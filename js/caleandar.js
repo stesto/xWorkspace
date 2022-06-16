@@ -185,7 +185,7 @@ function createCalendar(calendar, element, adjuster){
       var number = DayNumber((calendar.Prev.Days - calendar.Selected.FirstDay) + (i+1));
       day.appendChild(number);
       day.addEventListener('click', onDateClicked.bind(this, number.innerText,
-          (calendar.Selected.getMonth() - 1 + 12) % 12)); // Wrap month
+          (calendar.Selected.getMonth() - 1 + 12) % 12, calendar.Selected.getFullYear())); // Wrap month TODO bump year vor Jan
 
       days.appendChild(day);
     }
@@ -243,7 +243,8 @@ function createCalendar(calendar, element, adjuster){
         }
       }
       day.appendChild(number);
-      day.addEventListener('click', onDateClicked.bind(this, number.innerText, calendar.Selected.getMonth()));
+      day.addEventListener('click', onDateClicked.bind(this, number.innerText,
+          calendar.Selected.getMonth(), calendar.Selected.getFullYear()));
 
       // If Today..
       if((i+1) == calendar.Today.getDate() && calendar.Selected.Month == calendar.Today.Month && calendar.Selected.Year == calendar.Today.Year){
@@ -271,7 +272,7 @@ function createCalendar(calendar, element, adjuster){
       var number = DayNumber(i+1);
       day.appendChild(number);
       day.addEventListener('click', onDateClicked.bind(this, number.innerText,
-          (calendar.Selected.getMonth() + 1) % 12)); // Wrap months
+          (calendar.Selected.getMonth() + 1) % 12, calendar.Selected.getFullYear())); // Wrap months; TODO bump year nach Dez
 
       days.appendChild(day);
     }
@@ -300,11 +301,33 @@ function caleandar(el, data, settings){
   createCalendar(obj, el);
 }
 
-/**
- * Öffne ein Popup, um einen Büroplatz an dem Tag zu reservieren
- *
- * @param {number} day ist der Tag von 1-31
- * @param {number} month ist der Monat von 0-11
- */
-function onDateClicked(day, month) {
+const popup = document.querySelector('#popup');
+const overlay = document.querySelector('.popup-overlay');
+overlay.addEventListener('click', () => closePopup());
+
+function onDateClicked(day, month, year) {
+  openPopup(`${day}/${month + 1}/${year}`);
+}
+
+function openPopup(dateString) {
+  popup.classList.add('active');
+  overlay.classList.add('active');
+
+  if (!dateString)
+    return;
+
+  const TagField = document.querySelector('#TagField');
+  TagField.value = dateString;
+}
+
+function closePopup() {
+  popup.classList.remove('active');
+  overlay.classList.remove('active');
+}
+
+function onSuchen() {
+  const TagField = document.querySelector('#TagField');
+  const ZeitDropDown = document.querySelector('#ZeitDropDown');
+  const PlaetzeField = document.querySelector('#PlaetzeField');
+  window.location.href = "index.php?";
 }

@@ -53,12 +53,43 @@
 			</div>
 		</nav>
 		<!-- main -->
-		<div class="container">
+		<div class="popup" id="popup">
+			<form action="">
+				<h4 class="mb-5 text-secondary">Arbeitsplatz suchen</h4>
+				<div class="row">
+					<div class="mb-3 col-md-6">
+						<label>Tag<span class="text-danger"></span></label>
+						<input type="text" name="date" class="form-control"placeholder="dd/mm/yyyy" id="TagField">
+					</div>
 
-			<div id="caleandar"></div></div>
-			<script type="text/javascript" src="js/caleandar.js"></script>
-    		<script type="text/javascript" src="js/demo.js"></script>
-						
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							Zeit wählen
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="ZeitDropdown">
+							<li><a class="dropdown-item" href="#">10-12</a></li>
+							<li><a class="dropdown-item" href="#">12-14</a></li>
+							<li><a class="dropdown-item" href="#">14-16</a></li>
+						</ul>
+						</div>
+
+					<div class="mb-3 col-md-3">
+						<label>Plätze<span class="text-danger"></span></label>
+						<input type="text" name="seats" class="form-control" id="PlaetzeField">
+					</div>
+					<div class="col-md-13" onclick="onSuchen()">
+						<button class="btn btn-primary" type="button">Büro suchen</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="popup-overlay"></div>
+		<div class="container">
+			<div id="caleandar"></div>
+		</div>
+		<script type="text/javascript" src="js/caleandar.js"></script>
+		<script type="text/javascript" src="js/demo.js"></script>
+
 		<!-- Footer -->
 		<footer class="mt-auto py-5 bg-dark"></footer>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
