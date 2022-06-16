@@ -47,28 +47,43 @@
 </head>
     <body>
         <div style="display: flex;justify-content: center; margin-top: 80px;">
-            <form action="login.html" method="post" style="width: 800px;">
-            <div class="imgcontainer" style="display:flex; justify-content: center;">
-                <img src="logo_baer.svg" style="height: 92px; margin-right: 30px">
-                <img src="logo_schrift.svg" style=" height: 92px;">
-            </div>
+            <form action="index.php" method="post" style="width: 800px;">
+				<div class="imgcontainer" style="display:flex; justify-content: center;">
+					<img src="logo_baer.svg" style="height: 92px; margin-right: 30px">
+					<img src="logo_schrift.svg" style=" height: 92px;">
+				</div>
 
-            <div class="container">
-                <label for="mail"><b>E-Mail-Adresse</b></label>
-                <input type="text" placeholder="@stud.hwr-berlin.de" name="mail" required>
+				<div class="container">
+					<label for="email"><b>E-Mail-Adresse</b></label>
+					<input type="text" placeholder="@stud.hwr-berlin.de" name="email" required>
 
-                <label for="psw"><b>Passwort</b></label>
-                <input type="password" placeholder="Passwort eingebenn" name="psw" required>
-                    
-                <button type="submit">Anmelden</button>
-                <label>
-                <input type="checkbox" checked="checked" name="remember"> Anmeldenamen merken
-                </label>
-            </div>
+					<label for="psw"><b>Passwort</b></label>
+					<input type="password" placeholder="Passwort eingeben" name="psw" required>
+						
+					<button type="submit">Anmelden</button>
+					<label>
+					<input type="checkbox" checked="checked" name="remember"> Anmeldenamen merken
+					</label>
+				</div>
+				<?php
+					if(isset($_POST['email']) && isset($_POST['psw'])) {
+						$email = $_POST['email'];
+						$passwort = $_POST['psw'];
+						if ($passwort=='hwr' && $email=="hwr@stud.hwr-berlin.de"){
+							header("Location: /test.php");
+							exit();
+						}
+						else {
+							echo 'Die eingegeben Daten stimmen nicht überein :(';
+							
+						}
+					}
+				?>
+								
 
-            <div class="container" style="background-color:#f1f1f1; height: 25px">
-                <span class="psw"><a href="#">Passwort vergessen?</a></span>
-            </div>
+				<div class="container" style="background-color:#f1f1f1; height: 25px">
+					<span class="psw"><a href="#">Passwort vergessen?</a></span>
+				</div>
             </form>
         </div>
     </body>
