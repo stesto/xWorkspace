@@ -58,7 +58,7 @@
                 <input type="text" placeholder="@stud.hwr-berlin.de" name="mail" required>
 
                 <label for="psw"><b>Passwort</b></label>
-                <input type="password" placeholder="Passwort eingeben" name="psw" required>
+                <input type="password" placeholder="Passwort eingebenn" name="psw" required>
                     
                 <button type="submit">Anmelden</button>
                 <label>
