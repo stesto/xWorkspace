@@ -184,6 +184,8 @@ function createCalendar(calendar, element, adjuster){
 
       var number = DayNumber((calendar.Prev.Days - calendar.Selected.FirstDay) + (i+1));
       day.appendChild(number);
+      day.addEventListener('click', onDateClicked.bind(this, number.innerText,
+          (calendar.Selected.getMonth() - 1 + 12) % 12)); // Wrap month
 
       days.appendChild(day);
     }
@@ -241,6 +243,8 @@ function createCalendar(calendar, element, adjuster){
         }
       }
       day.appendChild(number);
+      day.addEventListener('click', onDateClicked.bind(this, number.innerText, calendar.Selected.getMonth()));
+
       // If Today..
       if((i+1) == calendar.Today.getDate() && calendar.Selected.Month == calendar.Today.Month && calendar.Selected.Year == calendar.Today.Year){
         day.className += " today";
@@ -266,6 +270,8 @@ function createCalendar(calendar, element, adjuster){
 
       var number = DayNumber(i+1);
       day.appendChild(number);
+      day.addEventListener('click', onDateClicked.bind(this, number.innerText,
+          (calendar.Selected.getMonth() + 1) % 12)); // Wrap months
 
       days.appendChild(day);
     }
@@ -292,4 +298,13 @@ function createCalendar(calendar, element, adjuster){
 function caleandar(el, data, settings){
   var obj = new Calendar(data, settings);
   createCalendar(obj, el);
+}
+
+/**
+ * Öffne ein Popup, um einen Büroplatz an dem Tag zu reservieren
+ *
+ * @param {number} day ist der Tag von 1-31
+ * @param {number} month ist der Monat von 0-11
+ */
+function onDateClicked(day, month) {
 }
