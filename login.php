@@ -47,7 +47,7 @@
 </head>
     <body>
         <div style="display: flex;justify-content: center; margin-top: 80px;">
-            <form action="index.php" method="post" style="width: 800px;">
+            <form action="login.php" method="post" style="width: 800px;">
 				<div class="imgcontainer" style="display:flex; justify-content: center;">
 					<img src="logo_baer.svg" style="height: 92px; margin-right: 30px">
 					<img src="logo_schrift.svg" style=" height: 92px;">
@@ -70,7 +70,7 @@
 						$email = $_POST['email'];
 						$passwort = $_POST['psw'];
 						if ($passwort=='hwr' && $email=="hwr@stud.hwr-berlin.de"){
-							header("Location: /test.php");
+							header("Location: /collab/index.php");
 							exit();
 						}
 						else {

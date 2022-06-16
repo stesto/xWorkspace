@@ -33,10 +33,10 @@
 				<div class="collapse navbar-collapse justify-content-between" id="menubar">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a href="index.html" class="nav-link active">Büroreservierung</a>
+							<a href="index.php" class="nav-link active">Büroreservierung</a>
 						</li>
 						<li class="nav-item">
-							<a href="kalender.html" class="nav-link">Kalender</a>
+							<a href="kalender.php" class="nav-link">Kalender</a>
 						</li>
 					</ul>
 					<div class="navbar-nav dropdown">
