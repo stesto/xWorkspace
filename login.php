@@ -54,8 +54,8 @@
             </div>
 
             <div class="container">
-                <label for="uname"><b>E-Mail-Adresse</b></label>
-                <input type="text" placeholder="@stud.hwr-berlin.de" name="uname" required>
+                <label for="mail"><b>E-Mail-Adresse</b></label>
+                <input type="text" placeholder="@stud.hwr-berlin.de" name="mail" required>
 
                 <label for="psw"><b>Passwort</b></label>
                 <input type="password" placeholder="Passwort eingeben" name="psw" required>
