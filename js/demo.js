@@ -1,8 +1,20 @@
-var events = [
-  {'Date': new Date(2022, 5, 13), 'Title': 'Raum 6A 325 (12-14)'},
-  {'Date': new Date(2022, 5, 21), 'Title': 'Raum 6A 123 (14-16)'},
-  
-];
+var events = [];
+
+var sessionEvents = sessionStorage.getItem('reservations');
+if (sessionEvents != null)
+  sessionEvents = JSON.parse(sessionEvents);
+
+sessionEvents.forEach(element => {
+  var date = new Date(element.datum); 
+  console.log(date);
+  events.push({
+    Date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+    Title: element.platz.raum,
+    Link: '#'
+  });
+});
+
 var settings = {};
+
 var element = document.getElementById('caleandar');
 caleandar(element, events, settings);
