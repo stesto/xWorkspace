@@ -186,7 +186,7 @@ function createCalendar(calendar, element, adjuster){
       var number = DayNumber((calendar.Prev.Days - calendar.Selected.FirstDay) + (i+1));
       day.appendChild(number);
       if (calendar.Options.DayClick) {
-        day.addEventListener('click', calendar.Options.DayClick.bind(this, number.innerText,
+        day.addEventListener('click', calendar.Options.DayClick.bind(this, number.firstChild.textContent,
             (calendar.Selected.getMonth() - 1 + 12) % 12, calendar.Selected.getFullYear())); // Wrap month TODO bump year vor Jan
       }
 
@@ -247,7 +247,7 @@ function createCalendar(calendar, element, adjuster){
       }
       day.appendChild(number);
       if (calendar.Options.DayClick) {
-        day.addEventListener('click', calendar.Options.DayClick.bind(this, number.innerText,
+        day.addEventListener('click', calendar.Options.DayClick.bind(this, number.firstChild.textContent,
           calendar.Selected.getMonth(), calendar.Selected.getFullYear()));
       }
 
@@ -277,7 +277,7 @@ function createCalendar(calendar, element, adjuster){
       var number = DayNumber(i+1);
       day.appendChild(number);
       if (calendar.Options.DayClick) {
-        day.addEventListener('click', calendar.Options.DayClick.bind(this, number.innerText,
+        day.addEventListener('click', calendar.Options.DayClick.bind(this, number.firstChild.textContent,
             (calendar.Selected.getMonth() + 1) % 12, calendar.Selected.getFullYear())); // Wrap months; TODO bump year nach Dez
       }
 

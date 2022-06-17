@@ -16,7 +16,6 @@ if (sessionEvents !== null) {
 }
 
 function onDateClicked(day, month, year) {
-  console.log(day, month, year);
   openPopup(new Date(year, month, day));
 }
 
