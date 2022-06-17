@@ -306,18 +306,18 @@ const overlay = document.querySelector('.popup-overlay');
 overlay.addEventListener('click', () => closePopup());
 
 function onDateClicked(day, month, year) {
-  openPopup(`${day}/${month + 1}/${year}`);
+  openPopup(new Date(year, month, day));
 }
 
-function openPopup(dateString) {
+function openPopup(date) {
   popup.classList.add('active');
   overlay.classList.add('active');
 
-  if (!dateString)
+  if (!date)
     return;
 
-  const TagField = document.querySelector('#TagField');
-  TagField.value = dateString;
+  const tagChooser = document.querySelector('#tagChooser');
+  tagChooser.value = date.toISOString().substring(0,10);
 }
 
 function closePopup() {
@@ -326,8 +326,9 @@ function closePopup() {
 }
 
 function onSuchen() {
-  const TagField = document.querySelector('#TagField');
-  const ZeitDropDown = document.querySelector('#ZeitDropDown');
-  const PlaetzeField = document.querySelector('#PlaetzeField');
+  const tagChooser = document.querySelector('#tagChooser');
+  const vonZeit = document.querySelector('#vonZeit');
+  const bisZeit = document.querySelector('#bisZeit');
+  const sitzplaetze = document.querySelector('#sitzplaetze');
   window.location.href = "index.php?";
 }

@@ -58,27 +58,19 @@
 				<h4 class="mb-5 text-secondary">Arbeitsplatz suchen</h4>
 				<div class="row">
 					<div class="mb-3 col-md-6">
-						<label>Tag<span class="text-danger"></span></label>
-						<input type="text" name="date" class="form-control"placeholder="dd/mm/yyyy" id="TagField">
+						<label>Datum<span class="text-danger"></span></label>
+						<input type="date" name="date" class="form-control" id="tagChooser">
+						<label>Von<span class="text-danger" id="vonZeit"></span></label>
+						<input type="time" name="von" class="form-control">
+						<label>Bis<span class="text-danger" id="bisZeit"></span></label>
+						<input type="time" name="bis" class="form-control">
 					</div>
-
-					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-							Zeit wählen
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="ZeitDropdown">
-							<li><a class="dropdown-item" href="#">10-12</a></li>
-							<li><a class="dropdown-item" href="#">12-14</a></li>
-							<li><a class="dropdown-item" href="#">14-16</a></li>
-						</ul>
-						</div>
-
 					<div class="mb-3 col-md-3">
-						<label>Plätze<span class="text-danger"></span></label>
-						<input type="text" name="seats" class="form-control" id="PlaetzeField">
+						<label>Plätze<span class="text-danger" id="sitzplaetze"></span></label>
+						<input type="number" name="seats" class="form-control">
 					</div>
-					<div class="col-md-13" onclick="onSuchen()">
-						<button class="btn btn-primary" type="button">Büro suchen</button>
+					<div class="col-md-13">
+					   <button class="btn btn-outline-secondary" type="button" onclick="onSuchen()">Suchen</button>
 					</div>
 				</div>
 			</form>
