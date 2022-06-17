@@ -16,6 +16,7 @@ if (sessionEvents !== null) {
 }
 
 function onDateClicked(day, month, year) {
+  console.log(day, month, year);
   openPopup(new Date(year, month, day));
 }
 
@@ -26,8 +27,11 @@ function openPopup(date) {
   if (!date)
     return;
 
-  const tagChooser = document.querySelector('#tagChooser');
-  tagChooser.value = date.toISOString().substring(0,10);
+  var day   = zeroPad(date.getDate(),     2);
+  var month = zeroPad(date.getMonth(),    2);
+  var year  = zeroPad(date.getFullYear(), 4);
+
+  tagChooser.value = `${ year }-${ month }-${ day }`;
 }
 
 function closePopup() {
@@ -49,3 +53,8 @@ var settings = {
 
 var element = document.getElementById('caleandar');
 caleandar(element, events, settings);
+
+function zeroPad(num, places) {
+  var zero = places - num.toString().length + 1;
+  return Array(+(zero > 0 && zero)).join("0") + num;
+}
