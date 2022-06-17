@@ -15,7 +15,37 @@ if (sessionEvents !== null) {
   });
 }
 
-var settings = {};
+function onDateClicked(day, month, year) {
+  openPopup(new Date(year, month, day));
+}
+
+function openPopup(date) {
+  popup.classList.add('active');
+  overlay.classList.add('active');
+
+  if (!date)
+    return;
+
+  const tagChooser = document.querySelector('#tagChooser');
+  tagChooser.value = date.toISOString().substring(0,10);
+}
+
+function closePopup() {
+  popup.classList.remove('active');
+  overlay.classList.remove('active');
+}
+
+function onSuchen() {
+  const tagChooser = document.querySelector('#tagChooser');
+  const vonZeit = document.querySelector('#vonZeit');
+  const bisZeit = document.querySelector('#bisZeit');
+  const sitzplaetze = document.querySelector('#sitzplaetze');
+  window.location.href = "index.php?";
+}
+
+var settings = {
+  DayClick: onDateClicked
+};
 
 var element = document.getElementById('caleandar');
 caleandar(element, events, settings);

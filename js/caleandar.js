@@ -11,6 +11,7 @@ var Calendar = function(model, options, date){
     DateTimeFormat: 'mmm, yyyy',
     DatetimeLocation: '',
     EventClick: '',
+    DayClick: '',
     EventTargetWholeDay: false,
     DisabledDays: [],
     ModelChange: model
@@ -184,8 +185,10 @@ function createCalendar(calendar, element, adjuster){
 
       var number = DayNumber((calendar.Prev.Days - calendar.Selected.FirstDay) + (i+1));
       day.appendChild(number);
-      day.addEventListener('click', onDateClicked.bind(this, number.innerText,
-          (calendar.Selected.getMonth() - 1 + 12) % 12, calendar.Selected.getFullYear())); // Wrap month TODO bump year vor Jan
+      if (calendar.Options.DayClick) {
+        day.addEventListener('click', calendar.Options.DayClick.bind(this, number.innerText,
+            (calendar.Selected.getMonth() - 1 + 12) % 12, calendar.Selected.getFullYear())); // Wrap month TODO bump year vor Jan
+      }
 
       days.appendChild(day);
     }
@@ -243,8 +246,10 @@ function createCalendar(calendar, element, adjuster){
         }
       }
       day.appendChild(number);
-      day.addEventListener('click', onDateClicked.bind(this, number.innerText,
+      if (calendar.Options.DayClick) {
+        day.addEventListener('click', calendar.Options.DayClick.bind(this, number.innerText,
           calendar.Selected.getMonth(), calendar.Selected.getFullYear()));
+      }
 
       // If Today..
       if((i+1) == calendar.Today.getDate() && calendar.Selected.Month == calendar.Today.Month && calendar.Selected.Year == calendar.Today.Year){
@@ -271,8 +276,10 @@ function createCalendar(calendar, element, adjuster){
 
       var number = DayNumber(i+1);
       day.appendChild(number);
-      day.addEventListener('click', onDateClicked.bind(this, number.innerText,
-          (calendar.Selected.getMonth() + 1) % 12, calendar.Selected.getFullYear())); // Wrap months; TODO bump year nach Dez
+      if (calendar.Options.DayClick) {
+        day.addEventListener('click', calendar.Options.DayClick.bind(this, number.innerText,
+            (calendar.Selected.getMonth() + 1) % 12, calendar.Selected.getFullYear())); // Wrap months; TODO bump year nach Dez
+      }
 
       days.appendChild(day);
     }
@@ -304,31 +311,3 @@ function caleandar(el, data, settings){
 const popup = document.querySelector('#popup');
 const overlay = document.querySelector('.popup-overlay');
 overlay.addEventListener('click', () => closePopup());
-
-function onDateClicked(day, month, year) {
-  openPopup(new Date(year, month, day));
-}
-
-function openPopup(date) {
-  popup.classList.add('active');
-  overlay.classList.add('active');
-
-  if (!date)
-    return;
-
-  const tagChooser = document.querySelector('#tagChooser');
-  tagChooser.value = date.toISOString().substring(0,10);
-}
-
-function closePopup() {
-  popup.classList.remove('active');
-  overlay.classList.remove('active');
-}
-
-function onSuchen() {
-  const tagChooser = document.querySelector('#tagChooser');
-  const vonZeit = document.querySelector('#vonZeit');
-  const bisZeit = document.querySelector('#bisZeit');
-  const sitzplaetze = document.querySelector('#sitzplaetze');
-  window.location.href = "index.php?";
-}
