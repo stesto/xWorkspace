@@ -1,16 +1,15 @@
 const { createApp } = Vue
 
+var arbeitsplaetze = [];
 var reservations = [];
 
-var vueApp = {};
 var vueRoot = {
-    data() {
-        return {
-            arbeitsplaetze: arbeitsplaetze,
-            reservations: reservations,
-            currentReservation: {},
-            searchText: ''
-        }
+    el: '#vue-body',
+    data: {
+        arbeitsplaetze: arbeitsplaetze,
+        reservations: reservations,
+        currentReservation: {},
+        searchText: ''
     },
     methods: {
         toggleReservation(platz) {
@@ -34,19 +33,30 @@ var vueRoot = {
         getFilteredRooms() {
             var lowerSearchText = this.searchText.toLowerCase();
             return this.arbeitsplaetze.filter(x => 
-                x.raum.toLowerCase().includes(lowerSearchText)
-                || x.ort.toLowerCase().includes(lowerSearchText)
+                x.Nummer.toLowerCase().includes(lowerSearchText)
+                || x.Ort.toLowerCase().includes(lowerSearchText)
+                || x.Straße.toLowerCase().includes(lowerSearchText)
+                || x.HausNr.toLowerCase().includes(lowerSearchText)
                 || x.features.reduce((previous, current) => previous || current.toLowerCase().includes(lowerSearchText), false)
             )
         }
+    },
+    mounted() {
+        $.get('/collab/api/raum.php')
+            .done(function(data) {
+                var rooms = JSON.parse(data);
+
+                for (var room of rooms) {
+                    console.log(room);
+                    arbeitsplaetze.push(room);
+                }
+            })
     }
 }
 
-window.onload = function() {
-    var sessionReservations = sessionStorage.getItem('reservations');
-    if (sessionReservations != null)
-        reservations = JSON.parse(sessionReservations);
+new Vue(vueRoot);
 
-    vueApp = createApp(vueRoot)
-    vueApp.mount('#vue-body');
-}
+var sessionReservations = sessionStorage.getItem('reservations');
+if (sessionReservations != null)
+    for (var res of JSON.parse(sessionReservations))
+        reservations.push(res);
