@@ -180,9 +180,9 @@ VALUES ('2022-06-22', '14:00:00', '17:00:00', '8', '1');
 INSERT INTO Reservierung (Datum, Von, Bis, RaumID, BenutzerID)
 VALUES ('2022-06-22', '14:00:00', '17:00:00', '12', '1');
 
-SELECT *
-FROM Raum INNER JOIN Reservierung
-ON Raum.ID = Reservierung.RaumID
-WHERE Reservierung.Von <= '14:00:00' AND Reservierung.Bis >= '17:00:00' AND Reservierung.Datum != '2022-06-23'
+SELECT * 
+FROM Raum 
+INNER JOIN Reservierung ON Raum.ID = Reservierung.RaumID 
+WHERE NOT (Reservierung.Von <= '13:00:00' AND Reservierung.Bis >= '12:00:00') AND Reservierung.Datum = '2022-06-22'
 
 
