@@ -72,7 +72,7 @@
 										<div class="container">
 											<h6><b>Raum {{ reservation.Nummer }}</b></h6>
 											<h6>{{ reservation.PLZ }} {{ reservation.Ort }}</h6>
-											<span v-for="feature in reservation.platz.features" class="badge text-bg-secondary rounded-pill">{{ feature.Name }}</span>
+											<span v-for="feature in reservation.features" class="badge text-bg-secondary rounded-pill">{{ feature.Name }}</span>
 										</div>
 										<div style="width: 160px; margin: auto; border-left: 1px solid #dadada; padding-left: 10px;">
 											<h6>{{ reservation.Datum }}</h6>
