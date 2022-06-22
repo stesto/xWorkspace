@@ -52,6 +52,15 @@ var vueRoot = {
                 }
             });
         //
+        $.get('api/reservierung.php')
+            .done(function(data) {
+                var rooms = JSON.parse(data);
+
+                for (var room of rooms) {
+                    console.log(room);
+                    reservations.push(room);
+                }
+            });
     }
 }
 

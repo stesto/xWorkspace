@@ -70,14 +70,14 @@
 								<li v-for="reservation in reservations" class="list-group-item align-items-center">
 									<div class="d-flex justify-content-between">
 										<div class="container">
-											<h6><b>Raum {{ reservation.platz.Nummer }}</b></h6>
-											<h6>{{ reservation.platz.PLZ }} {{ reservation.platz.Ort }}</h6>
+											<h6><b>Raum {{ reservation.Nummer }}</b></h6>
+											<h6>{{ reservation.PLZ }} {{ reservation.Ort }}</h6>
 											<span v-for="feature in reservation.platz.features" class="badge text-bg-secondary rounded-pill">{{ feature.Name }}</span>
 										</div>
 										<div style="width: 160px; margin: auto; border-left: 1px solid #dadada; padding-left: 10px;">
-											<h6>{{ reservation.datum }}</h6>
-											<h6>Von {{ reservation.von }} Uhr</h6>
-											<h6>Bis {{ reservation.bis }} Uhr</h6>
+											<h6>{{ reservation.Datum }}</h6>
+											<h6>Von {{ reservation.Von }} Uhr</h6>
+											<h6>Bis {{ reservation.Bis }} Uhr</h6>
 										</div>
 									</div>
 								</li>
