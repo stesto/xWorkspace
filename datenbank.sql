@@ -29,37 +29,37 @@ BenutzerID
 //// Raum
 
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 123', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 123', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 124', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 124', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 125', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 125', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 126', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 126', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 127', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 127', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 223', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 223', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 224', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 224', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 225', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 225', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 226', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 226', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 227', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 227', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 323', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 323', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 324', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 324', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 325', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 325', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 326', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 326', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 INSERT INTO Raum (Nummer, Straße, HausNr, Ort, PLZ)
-VALUES ('6A 327', 'Alt Friedrichsfelde', '60', '10315', 'Berlin');
+VALUES ('6A 327', 'Alt Friedrichsfelde', '60', 'Berlin', '10315');
 
 
 //// Feature
