@@ -37,7 +37,7 @@ var vueRoot = {
                 || x.Ort.toLowerCase().includes(lowerSearchText)
                 || x.Straße.toLowerCase().includes(lowerSearchText)
                 || x.HausNr.toLowerCase().includes(lowerSearchText)
-                || x.features.reduce((previous, current) => previous || current.toLowerCase().includes(lowerSearchText), false)
+                || x.features.reduce((previous, current) => previous || current.Name.toLowerCase().includes(lowerSearchText), false)
             )
         }
     },
