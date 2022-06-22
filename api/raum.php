@@ -1,8 +1,19 @@
 <?php
     require_once '_db.php';
 
-    $rooms = db::getInstance()->query_to_array('SELECT * FROM Raum');
-    $features = db::getInstance()->query_to_array('SELECT rf.RaumID, rf.FeatureID, f.Name FROM Raum_Feature rf JOIN Feature f ON rf.FeatureID = f.ID');
+    $rooms = db::getInstance()->query_to_array(
+        "SELECT 
+            * 
+        FROM Raum");
+
+    $features = db::getInstance()->query_to_array(
+        "SELECT 
+            rf.RaumID, 
+            rf.FeatureID, 
+            f.Name 
+        FROM Raum_Feature rf 
+        JOIN Feature f ON rf.FeatureID = f.ID");
+        
     $features = group_by('RaumID', $features);
 
     // echo var_dump($features);

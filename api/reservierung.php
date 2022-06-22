@@ -1,5 +1,5 @@
 <?php
-    require_once '_db.php';
+    require_once "_db.php";
 
     $reservations = db::getInstance()->query_to_array(
         "SELECT 
@@ -8,7 +8,7 @@
         JOIN Raum rau ON res.RaumID = rau.ID"
     );
 
-    $roomIds = array_map(function($reserv) { return $reserv['RaumID']; }, $reservations);
+    $roomIds = array_map(function($reserv) { return $reserv["RaumID"]; }, $reservations);
     $roomIds = array_unique($roomIds);
     $roomIds = implode(",", $roomIds);
 
@@ -22,15 +22,15 @@
         WHERE rf.RaumID IN ($roomIds)"
     );
 
-    $features = group_by('RaumID', $features);
+    $features = group_by("RaumID", $features);
 
     foreach ($reservations as &$reservation) {
         $arr = array();
-        $roomId = $reservation['RaumID'];
+        $roomId = $reservation["RaumID"];
         if (array_key_exists($roomId, $features))
             $arr = $features[$roomId];
 
-        $reservation['features'] = $arr;
+        $reservation["features"] = $arr;
     }
 
 
