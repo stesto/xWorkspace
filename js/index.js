@@ -65,8 +65,3 @@ var vueRoot = {
 }
 
 new Vue(vueRoot);
-
-var sessionReservations = sessionStorage.getItem('reservations');
-if (sessionReservations != null)
-    for (var res of JSON.parse(sessionReservations))
-        reservations.push(res);
