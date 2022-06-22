@@ -74,7 +74,7 @@
 											<h6>{{ reservation.PLZ }} {{ reservation.Ort }}</h6>
 											<span v-for="feature in reservation.features" class="badge text-bg-secondary rounded-pill">{{ feature.Name }}</span>
 										</div>
-										<div style="width: 160px; margin: auto; border-left: 1px solid #dadada; padding-left: 10px;">
+										<div style="width: 190px; margin: auto; border-left: 1px solid #dadada; padding-left: 10px;">
 											<h6>{{ reservation.Datum }}</h6>
 											<h6>Von {{ reservation.Von }} Uhr</h6>
 											<h6>Bis {{ reservation.Bis }} Uhr</h6>
