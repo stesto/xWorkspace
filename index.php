@@ -58,10 +58,6 @@
 											<label>Bis<span class="text-danger"></span></label>
 											<input type="time" name="bis" class="form-control">
 										</div>
-										<div class="mb-3 col-md-3">
-											<label>Plätze<span class="text-danger"></span></label>
-											<input type="number" name="seats" class="form-control">
-										</div>
 										<div class="col-md-13">
 										<button class="btn btn-outline-secondary" type="button">Suchen</button>
 										</div>
