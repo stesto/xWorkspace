@@ -50,7 +50,8 @@ var vueRoot = {
                     console.log(room);
                     arbeitsplaetze.push(room);
                 }
-            })
+            });
+        //
     }
 }
 
