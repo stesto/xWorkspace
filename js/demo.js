@@ -9,7 +9,7 @@ if (sessionEvents !== null) {
     console.log(date);
     events.push({
       Date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-      Title: element.platz.raum,
+      Title: element.platz.Nummer,
       Link: '#'
     });
   });
