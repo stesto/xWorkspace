@@ -42,7 +42,7 @@ var vueRoot = {
         }
     },
     mounted() {
-        $.get('/collab/api/raum.php')
+        $.get('api/raum.php')
             .done(function(data) {
                 var rooms = JSON.parse(data);
 
