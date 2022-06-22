@@ -1,23 +1,40 @@
 <?php
     require_once '_db.php';
 
-    $rooms = db::getInstance()->query_to_array('SELECT * FROM Reservierung res JOIN Raum rau ON res.RaumID = rau.ID');
-    // $features = db::getInstance()->query_to_array('SELECT rf.RaumID, rf.FeatureID, f.Name FROM Raum_Feature rf JOIN Feature f ON rf.FeatureID = f.ID');
-    // $features = group_by('RaumID', $features);
+    $reservations = db::getInstance()->query_to_array(
+        "SELECT 
+            * 
+        FROM Reservierung res 
+        JOIN Raum rau ON res.RaumID = rau.ID"
+    );
 
-    // // echo var_dump($features);
+    $roomIds = array_map(function($reserv) { return $reserv['RaumID']; }, $reservations);
+    $roomIds = array_unique($roomIds);
+    $roomIds = implode(",", $roomIds);
 
-    // foreach ($rooms as &$room) {
-    //     $arr = array();
-    //     $id = $room['ID'];
-    //     if (array_key_exists($id, $features))
-    //         $arr = $features[$id];
+    $features = db::getInstance()->query_to_array(
+        "SELECT 
+            rf.RaumID, 
+            rf.FeatureID, 
+            f.Name 
+        FROM Raum_Feature rf 
+        JOIN Feature f ON rf.FeatureID = f.ID
+        WHERE rf.RaumID IN ($roomIds)"
+    );
 
-    //     $room['features'] = $arr;
-    // }
+    $features = group_by('RaumID', $features);
+
+    foreach ($reservations as &$reservation) {
+        $arr = array();
+        $roomId = $reservation['RaumID'];
+        if (array_key_exists($roomId, $features))
+            $arr = $features[$roomId];
+
+        $reservation['features'] = $arr;
+    }
 
 
-    echo json_encode($rooms);
+    echo json_encode($reservations);
 
     function group_by($key, $data) {
         $result = array();
