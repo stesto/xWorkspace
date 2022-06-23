@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Demo</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		<link href="css/index.css" rel="stylesheet">
 	</head>
 	<body class="d-flex flex-column h-100">
 		<div id="vue-body">
@@ -30,11 +31,10 @@
 						<div class="navbar-nav dropdown">
 							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
 								<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="24" height="24">
-								<span class="mx-1">Timmy</span>
+								<span class="mx-1">{{ currentUser.name }}</span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">Einstellungen</a></li>
-								<li><a class="dropdown-item" href="#">Logout</a></li>
+								<li class="dropdown-item" v-for="user in users" v-on:click="setUser(user)">{{ user.name }}</li>
 							</ul>
 						</div>
 					</div>
@@ -45,48 +45,50 @@
 				<div class="container-md">
 					<div class="row">
 						<!-- Filter Sidebar -->
-						<div class="col-md-5 mb-4">
-							<div class="search">
-								<form action="" class="mt-5 border p-4 bg-light shadow">
-									<h4 class="mb-5 text-secondary">Arbeitsplatz suchen</h4>
-									<div class="row">
-										<div class="mb-3 col-md-6">
-											<label>Datum<span class="text-danger"></span></label>
-											<input type="date" name="date" class="form-control">
-											<label>Von<span class="text-danger"></span></label>
-											<input type="time" name="von" class="form-control">
-											<label>Bis<span class="text-danger"></span></label>
-											<input type="time" name="bis" class="form-control">
-										</div>
-										<div class="col-md-13">
-										<button class="btn btn-outline-secondary" type="button">Suchen</button>
-										</div>
-									</div>
-								</form>
-							</div>
+						<div class="col-md-7 mb-4">
 							<!-- Reserviert -->
-							<h2 style="margin-top: 20px;">Reservierungen</h2>
-							<ul class="list-group my-3">
-								<li v-for="reservation in reservations" class="list-group-item align-items-center">
-									<div class="d-flex justify-content-between">
-										<div class="container">
-											<h6><b>Raum {{ reservation.Nummer }}</b></h6>
-											<h6>{{ reservation.PLZ }} {{ reservation.Ort }}</h6>
+							<div class="material-shadow">
+								<h4 >Deine Reservierungen</h2>
+								<div>
+									<div v-for="reservation in reservations" class="reservation-div">
+										<div>
+											<h6 style="margin-bottom: 3px;"><b>Raum {{ reservation.Nummer }}</b></h6>
+											<h6 style="margin-bottom: 3px;">{{ reservation.Straße }} {{ reservation.HausNr }}, {{ reservation.PLZ }} {{ reservation.Ort }}</h6>
 											<span v-for="feature in reservation.features" class="badge text-bg-secondary rounded-pill">{{ feature.Name }}</span>
 										</div>
-										<div style="width: 190px; margin: auto; border-left: 1px solid #dadada; padding-left: 10px;">
-											<h6>{{ reservation.Datum }}</h6>
-											<h6>Von {{ reservation.Von }} Uhr</h6>
-											<h6>Bis {{ reservation.Bis }} Uhr</h6>
+										<div class="reservation-datetime">
+											<span>{{ reservation.Datum }}</span>
+											<span>{{ reservation.Von }}</span>
+											<span>{{ reservation.Bis }}</span>
 										</div>
 									</div>
-								</li>
-							</ul>
+								</div>
+							</div>
 						</div>
 						<!-- Suchergebnisse -->
-						<div class="col-md-7">
+						<div class="col-md-5">
+							<div class="material-shadow" style="margin-bottom: 10px">
+								<h4>Freien Raum suchen</h4>
+								<div class="room-search-fields">
+									<div>
+										<label>Datum<span class="text-danger"></span></label>
+										<input type="date" name="date" class="form-control" v-model="reservationSearch.datum">
+									</div>
+									<div>
+										<label>Von<span class="text-danger"></span></label>
+										<input type="time" name="von" class="form-control" v-model="reservationSearch.von">
+									</div>
+									<div>
+										<label>Bis<span class="text-danger"></span></label>
+										<input type="time" name="bis" class="form-control" v-model="reservationSearch.bis">
+									</div>
+								</div>
+								<div style="display: flex; justify-content: flex-end;">
+									<button class="btn btn-outline-secondary" type="button" style="margin-top: 10px;" v-on:click="getFreeRooms" :disabled="!canGetFreeRooms">Suchen</button>
+								</div>
+							</div>
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Suche..."  v-model="searchText">
+								<input type="text" class="form-control" :placeholder="arbeitsplaetze.length + ' Ergebnisse filtern ...'"  v-model="searchText">
 							</div>
 							<!-- Beispielliste -->
 							<ul class="list-group my-3">
@@ -121,26 +123,6 @@
 									</div>
 								</li>
 							</ul>
-							<!-- Pagination -->
-							<!-- <div class="d-flex justify-content-center">
-								<nav>
-									<ul class="pagination">
-									<li class="page-item">
-										<a class="page-link" href="#">
-											<span>&laquo;</span>
-										</a>
-									</li>
-									<li class="page-item active"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item">
-											<a class="page-link" href="#">
-												<span>&raquo;</span>
-											</a>
-									</li>
-									</ul>
-								</nav>
-							</div> -->
 						</div>
 					</div>
 				</div>

@@ -1,12 +1,32 @@
 <?php
     require_once "_db.php";
 
-    $reservations = db::getInstance()->query_to_array(
+    $query = 
         "SELECT 
             * 
         FROM Reservierung res 
-        JOIN Raum rau ON res.RaumID = rau.ID"
-    );
+        JOIN Raum rau ON res.RaumID = rau.ID";
+
+    if (isset($_GET["datum"]) && isset($_GET["von"]) && isset($_GET["bis"])) {
+        $datum = $_GET["datum"];
+        $von = $_GET["von"];
+        $bis = $_GET["bis"];
+
+        $query =
+        "SELECT * 
+            FROM Reservierung 
+            INNER JOIN Raum ON Raum.ID = Reservierung.RaumID 
+            WHERE NOT (Reservierung.Von <= '$bis' AND Reservierung.Bis >= '$von') AND Reservierung.Datum = '$datum'";
+    }
+
+    if (isset($_GET["benutzerId"])) {
+        $benutzerId = $_GET["benutzerId"];
+        $query = $query . " WHERE BenutzerID = '$benutzerId'";
+    }
+
+    // TODO: Fehler wenn null Ergebnisse
+
+    $reservations = db::getInstance()->query_to_array($query);
 
     $roomIds = array_map(function($reserv) { return $reserv["RaumID"]; }, $reservations);
     $roomIds = array_unique($roomIds);

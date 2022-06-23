@@ -1,0 +1,42 @@
+.material-shadow {
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 15px;
+    box-shadow: 0px 1px 3px 1px rgb(0 0 0 / 30%);
+}
+
+.badge {
+    margin-right: 3px;
+}
+
+.reservation-div {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.reservation-div:not(:last-of-type) {
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 10px;
+}
+
+.reservation-div:first-of-type {
+    border-top: 1px solid #dadada;
+}
+
+.reservation-datetime {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-end;
+}
+
+.room-search-fields {
+    display: flex; 
+    justify-content: space-between
+}
+
+@media (max-width: 1200px) {
+    .room-search-fields {
+        flex-direction: column;
+    }
+}
