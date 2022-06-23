@@ -1,19 +1,25 @@
 var events = [];
 
-var sessionEvents = sessionStorage.getItem('reservations');
-if (sessionEvents !== null) {
-  sessionEvents = JSON.parse(sessionEvents);
-
-  sessionEvents.forEach(element => {
-    var date = new Date(element.datum);
-    console.log(date);
-    events.push({
-      Date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-      Title: element.platz.Nummer,
-      Link: '#'
-    });
-  });
-}
+	$.get('api/reservierung.php')
+  .done(function(data) {
+    var rooms = JSON.parse(data);
+      for (var room of rooms) {
+        var date = new Date(room.Datum);
+          console.log(date);
+          events.push({
+            Date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+            Title: room.Nummer,
+            Link: '#'
+          });
+        }
+        console.log(events);
+        var settings = {
+          DayClick: onDateClicked
+        };
+        
+        var element = document.getElementById('caleandar');
+        caleandar(element, events, settings);
+      });
 
 function onDateClicked(day, month, year) {
   openPopup(new Date(year, month, day));
@@ -45,13 +51,6 @@ function onSuchen() {
   const sitzplaetze = document.querySelector('#sitzplaetze');
   window.location.href = "index.php?";
 }
-
-var settings = {
-  DayClick: onDateClicked
-};
-
-var element = document.getElementById('caleandar');
-caleandar(element, events, settings);
 
 function zeroPad(num, places) {
   var zero = places - num.toString().length + 1;
