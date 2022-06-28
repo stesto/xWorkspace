@@ -24,7 +24,6 @@
 <!-- Content -->
 
 ## Roadmap
----
 
 <br />
 
@@ -43,16 +42,16 @@
 <p align="right">(<a href="#top">nach oben</a>)</p>
 
 ## ER Modell
----
 
 <br />
+
 <div align="center">
     <img src="media/ER-Modell.svg" alt="ER Model">
 </div>
 <p align="right">(<a href="#top">nach oben</a>)</p>
 
 ## Relationaler Datenbank Entwurf
----
+
 <br />
 
 Benutzer(**ID**, Name, Password)<br>
@@ -65,7 +64,7 @@ Reservierung(**ID**, <u>BenutzerID</u>, <u>RaumID</u>, Von, Bis, Datum)
 <p align="right">(<a href="#top">nach oben</a>)</p>
 
 ## Erstellt mit
----
+
 <br />
 
 - [Bootstrap](https://getbootstrap.com)
