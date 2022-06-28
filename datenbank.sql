@@ -25,6 +25,15 @@ Bis
 RaumID
 BenutzerID
 
+//// Benutzer
+
+INSERT INTO Benutzer (Name, Password)
+VALUES ('Timmy', 'Test123');
+INSERT INTO Benutzer (Name, Password)
+VALUES ('Steve', 'Test123');
+INSERT INTO Benutzer (Name, Password)
+VALUES ('Oliver', 'Test123');
+
 
 //// Raum
 
