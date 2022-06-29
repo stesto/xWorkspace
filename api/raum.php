@@ -1,10 +1,35 @@
 <?php
     require_once '_db.php';
 
-    $rooms = db::getInstance()->query_to_array(
-        "SELECT 
-            * 
-        FROM Raum");
+    $query = "";
+
+    if (isset($_GET["datum"]) && isset($_GET["von"]) && isset($_GET["bis"])) {
+        $datum = $_GET["datum"];
+        $von = $_GET["von"];
+        $bis = $_GET["bis"];
+
+        $query =
+            "SELECT * FROM Raum WHERE ID NOT IN (
+                SELECT 
+                    RaumID 
+                FROM 
+                    Reservierung 
+                WHERE 
+                    Reservierung.Von < '$bis' 
+                    AND Reservierung.Bis > '$von' 
+                    AND Reservierung.Datum = '$datum'
+            )";
+    }
+    elseif (isset($_GET["id"])) {
+        $id = $_GET["id"];
+
+        $query = "SELECT * FROM Raum WHERE ID = '$id'";
+    }
+    else {
+        $query = "SELECT * FROM Raum";
+    }
+
+    $rooms = db::getInstance()->query_to_array($query);
 
     $features = db::getInstance()->query_to_array(
         "SELECT 

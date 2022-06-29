@@ -6,6 +6,7 @@
 		<title>Demo</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link href="css/index.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/theme3.css"/>
 	</head>
 	<body class="d-flex flex-column h-100">
 		<div id="vue-body">
@@ -44,10 +45,14 @@
 			<main class="my-5">
 				<div class="container-md">
 					<div class="row">
-						<!-- Filter Sidebar -->
 						<div class="col-md-7 mb-4">
 							<!-- Reserviert -->
-							<div class="material-shadow">
+							<div style="display: flex;">
+								<div v-for="tab in reservierungTabs" class="reservierung-tab" :class="{ 'selected': selectedTab === tab }" v-on:click="selectTab(tab)">
+									<span>{{ tab }}</span>
+								</div>
+							</div>
+							<div class="material-shadow" v-show="selectedTab === 'Liste'" >
 								<h4 >Deine Reservierungen</h2>
 								<div>
 									<div v-for="reservation in reservations" class="reservation-div">
@@ -64,8 +69,11 @@
 									</div>
 								</div>
 							</div>
+							<div v-show="selectedTab === 'Kalender'" class="container">
+								<div id="caleandar"></div>
+							</div>
 						</div>
-						<!-- Suchergebnisse -->
+						<!-- Suche -->
 						<div class="col-md-5">
 							<div class="material-shadow" style="margin-bottom: 10px">
 								<h4>Freien Raum suchen</h4>
@@ -90,7 +98,7 @@
 							<div class="input-group">
 								<input type="text" class="form-control" :placeholder="arbeitsplaetze.length + ' Ergebnisse filtern ...'"  v-model="searchText">
 							</div>
-							<!-- Beispielliste -->
+							<!-- Freie Räume -->
 							<ul class="list-group my-3">
 							<li v-for="platz in getFilteredRooms" class="list-group-item  align-items-center">
 									<div class="d-flex justify-content-between">
@@ -132,6 +140,7 @@
 		<script src="https://unpkg.com/vue@2"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
+		<script src="js/caleandar.js"></script>
 		<script src="js/index.js"></script>
 	</body>
 </html>

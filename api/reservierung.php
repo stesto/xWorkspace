@@ -7,18 +7,6 @@
         FROM Reservierung res 
         JOIN Raum rau ON res.RaumID = rau.ID";
 
-    if (isset($_GET["datum"]) && isset($_GET["von"]) && isset($_GET["bis"])) {
-        $datum = $_GET["datum"];
-        $von = $_GET["von"];
-        $bis = $_GET["bis"];
-
-        $query =
-        "SELECT * 
-            FROM Reservierung 
-            INNER JOIN Raum ON Raum.ID = Reservierung.RaumID 
-            WHERE NOT (Reservierung.Von <= '$bis' AND Reservierung.Bis >= '$von') AND Reservierung.Datum = '$datum'";
-    }
-
     if (isset($_GET["benutzerId"])) {
         $benutzerId = $_GET["benutzerId"];
         $query = $query . " WHERE BenutzerID = '$benutzerId'";

@@ -307,7 +307,3 @@ function caleandar(el, data, settings){
   var obj = new Calendar(data, settings);
   createCalendar(obj, el);
 }
-
-const popup = document.querySelector('#popup');
-const overlay = document.querySelector('.popup-overlay');
-overlay.addEventListener('click', () => closePopup());

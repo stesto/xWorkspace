@@ -17,18 +17,34 @@ var users = [
     }
 ]
 
+var reservationSearch = {
+    datum: '',
+    von: '',
+    bis: '',
+ };
+
+var reservierungTabs = [
+    'Kalender',
+    'Liste'
+];
+
 var vueRoot = {
     el: '#vue-body',
     data: {
         arbeitsplaetze: arbeitsplaetze,
         reservations: reservations,
         currentReservation: {},
-        reservationSearch: {},
+        reservationSearch: reservationSearch,
+        reservierungTabs: reservierungTabs,
+        selectedTab: reservierungTabs[0],
         users: users,
         currentUser: users[0],
         searchText: ''
     },
     methods: {
+        selectTab(tab) {
+            this.selectedTab = tab;
+        },
         toggleReservation(platz) {
             if (this.currentReservation == platz)
                 this.currentReservation = undefined;
@@ -46,7 +62,7 @@ var vueRoot = {
             sessionStorage.setItem('reservations', JSON.stringify(this.reservations));
         },
         getFreeRooms() {
-            $.get('api/reservierung.php',
+            $.get('api/raum.php',
             {
                 datum: this.reservationSearch.datum,
                 von: this.reservationSearch.von,
@@ -70,11 +86,29 @@ var vueRoot = {
                 benutzerId: this.currentUser.id
             })
             .done(function(data) {
-                var rooms = JSON.parse(data);
+                var data = JSON.parse(data);
+                
+                var events = [];
                 reservations.splice(0);
-                for (var room of rooms) {
+
+                for (var room of data) {
                     reservations.push(room);
+                    console.log(room);
+                    var date = new Date(room.Datum);
+                    events.push({
+                        Date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+                        Title: room.Nummer,
+                        Link: '#'
+                      });
                 }
+                
+                var settings = {
+                    DayClick: onDateClicked
+                };
+                console.log(events);
+                var element = document.getElementById('caleandar');
+                element.innerHTML = '';
+                caleandar(element, events, settings);
             });
         }
     },
@@ -100,15 +134,20 @@ var vueRoot = {
     },
     mounted() {
         this.getReservierungen();
-        // $.get('api/reservierung.php')
-        //     .done(function(data) {
-        //         var rooms = JSON.parse(data);
-
-        //         for (var room of rooms) {
-        //             reservations.push(room);
-        //         }
-        //     });
     }
 }
+
+function onDateClicked(day, month, year) {
+    var day   = zeroPad(day,   2);
+    var month = zeroPad(month, 2);
+    var year  = zeroPad(year,  4);
+
+    reservationSearch.datum = `${ year }-${ month }-${ day }`;
+}
+
+function zeroPad(num, places) {
+    var zero = places - num.toString().length + 1;
+    return Array(+(zero > 0 && zero)).join("0") + num;
+  }
 
 new Vue(vueRoot);

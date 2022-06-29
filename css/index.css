@@ -35,6 +35,16 @@
     justify-content: space-between
 }
 
+.reservierung-tab {
+    margin-right: 10px; 
+    user-select: none;
+    cursor: pointer;
+}
+
+.reservierung-tab.selected {
+    border-bottom: 2px solid blacK;
+}
+
 @media (max-width: 1200px) {
     .room-search-fields {
         flex-direction: column;
