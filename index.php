@@ -25,9 +25,6 @@
 							<li class="nav-item">
 								<a href="index.php" class="nav-link active">Büroreservierung</a>
 							</li>
-							<li class="nav-item">
-								<a href="kalender.php" class="nav-link">Kalender</a>
-							</li>
 						</ul>
 						<div class="navbar-nav dropdown">
 							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
