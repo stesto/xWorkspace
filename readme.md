@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 
 <div id="top" align="center">
-<h1 align="center">Projekt xWS</h3>
+<h1 align="center">Projekt xWorkspace</h3>
 <br />
     <img src="media/xWS_Logo.png" alt="Logo">
   </a>
@@ -58,8 +58,8 @@ Benutzer(**ID**, Name, Password)<br>
 Raum(**ID**, Nummer, Straße, HausNr, Ort, PLZ)<br>
 Feature(**ID**, Name)
 
-Raum_Feature(**ID**, <u>RaumID</u>, <u>FeatureID</u>)<br>
-Reservierung(**ID**, <u>BenutzerID</u>, <u>RaumID</u>, Von, Bis, Datum)
+Raum_Feature(**ID**, <ins>RaumID</ins>, <ins>FeatureID</ins>)<br>
+Reservierung(**ID**, <ins>BenutzerID</ins>, <ins>RaumID</ins>, Von, Bis, Datum)
 
 <p align="right">(<a href="#top">nach oben</a>)</p>
 
