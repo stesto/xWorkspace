@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Demo</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-		<link href="css/index.css" rel="stylesheet">
+		<link href="css/bueroreservierung.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/theme3.css"/>
 	</head>
 	<body class="d-flex flex-column h-100">
@@ -23,7 +23,7 @@
 					<div class="collapse navbar-collapse justify-content-between" id="menubar">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a href="index.php" class="nav-link active">Büroreservierung</a>
+								<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>
 							</li>
 						</ul>
 						<div class="navbar-nav dropdown">
@@ -138,6 +138,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
 		<script src="js/caleandar.js"></script>
-		<script src="js/index.js"></script>
+		<script src="js/bueroreservierung.js"></script>
 	</body>
 </html>

@@ -49,7 +49,7 @@ function onSuchen() {
   const vonZeit = document.querySelector('#vonZeit');
   const bisZeit = document.querySelector('#bisZeit');
   const sitzplaetze = document.querySelector('#sitzplaetze');
-  window.location.href = "index.php?";
+  window.location.href = "bueroreservierung.php?";
 }
 
 function zeroPad(num, places) {
