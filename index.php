@@ -15,7 +15,7 @@
 				<div class="container-md">
 					<a class="navbar-brand" href="#">
 						<img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-						<b>Kollaborationsplattform</b>
+						<b>xWorkspace</b>
 					</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menubar">
 						<span class="navbar-toggler-icon"></span>
