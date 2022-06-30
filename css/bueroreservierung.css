@@ -1,3 +1,7 @@
+[v-cloak] {
+    display: none;
+}
+
 .material-shadow {
     border-radius: 5px;
     margin-top: 10px;
@@ -21,7 +25,7 @@
 }
 
 .reservation-div:first-of-type {
-    border-top: 1px solid #dadada;
+    padding-top: 0;
 }
 
 .reservation-datetime {
@@ -36,17 +40,35 @@
 }
 
 .reservierung-tab {
-    margin-right: 10px; 
+    margin-left: 5px; 
     user-select: none;
     cursor: pointer;
+    border-radius: 5px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reservierung-tab:hover {
+    background-color: rgb(0 0 0 / 5%);
 }
 
 .reservierung-tab.selected {
-    border-bottom: 2px solid blacK;
+    background-color: rgb(0 0 0 / 10%);
 }
 
 @media (max-width: 1200px) {
     .room-search-fields {
         flex-direction: column;
     }
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
 }

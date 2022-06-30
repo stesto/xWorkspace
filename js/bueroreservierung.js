@@ -2,20 +2,6 @@ const { createApp } = Vue
 
 var arbeitsplaetze = [];
 var reservations = [];
-var users = [
-    {
-        name: 'Timmy',
-        id: 1
-    },
-    {
-        name: 'Oliver',
-        id: 2
-    },
-    {
-        name: 'Steve',
-        id: 3
-    }
-]
 
 var reservationSearch = {
     datum: '',
@@ -24,21 +10,27 @@ var reservationSearch = {
  };
 
 var reservierungTabs = [
-    'Kalender',
-    'Liste'
+    {
+        symbol: 'calendar_month',
+        title: 'Kalenderansicht'
+    },
+    {
+        symbol: 'list',
+        title: 'Listenansicht'
+    }
 ];
 
 var vueRoot = {
     el: '#vue-body',
     data: {
+        username: '',
+        user_id: -1,
         arbeitsplaetze: arbeitsplaetze,
         reservations: reservations,
         currentReservation: {},
         reservationSearch: reservationSearch,
         reservierungTabs: reservierungTabs,
         selectedTab: reservierungTabs[0],
-        users: users,
-        currentUser: users[0],
         searchText: ''
     },
     methods: {
@@ -77,13 +69,9 @@ var vueRoot = {
                 }
             });
         },
-        setUser(user) {
-            this.currentUser = user;
-            this.getReservierungen();
-        },
         getReservierungen() {
             $.get('api/reservierung.php', {
-                benutzerId: this.currentUser.id
+                benutzerId: this.user_id
             })
             .done(function(data) {
                 var data = JSON.parse(data);
@@ -93,7 +81,6 @@ var vueRoot = {
 
                 for (var room of data) {
                     reservations.push(room);
-                    console.log(room);
                     var date = new Date(room.Datum);
                     events.push({
                         Date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
@@ -105,11 +92,17 @@ var vueRoot = {
                 var settings = {
                     DayClick: onDateClicked
                 };
-                console.log(events);
+                
                 var element = document.getElementById('caleandar');
                 element.innerHTML = '';
                 caleandar(element, events, settings);
             });
+        },
+        logout() {
+            Cookies.remove('user_id');
+            Cookies.remove('username');
+
+            location.href = 'login.php';
         }
     },
     computed: {
@@ -133,6 +126,8 @@ var vueRoot = {
         }
     },
     mounted() {
+        this.username = Cookies.get('username');
+        this.user_id = Cookies.get('user_id');
         this.getReservierungen();
     }
 }
@@ -147,7 +142,7 @@ function onDateClicked(day, month, year) {
 
 function zeroPad(num, places) {
     var zero = places - num.toString().length + 1;
-    return Array(+(zero > 0 && zero)).join("0") + num;
+    return Array(+(zero > 0 && zero)).join('0') + num;
   }
 
 new Vue(vueRoot);

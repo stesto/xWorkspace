@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/loading.css"/>
     <style>
         body {font-family: "Segoe UI", Helvetica, sans-serif;}
         form {border: 3px solid #f1f1f1;}
@@ -60,47 +61,37 @@
     </style>
 </head>
     <body>
-        <div style="display: flex;justify-content: center; margin-top: 80px;">
-            <form action="login.php" method="post" style="width: 800px;">
+        <div id="vue-body" style="display: flex;justify-content: center; margin-top: 80px;">
+            <div action="login.php" method="post" style="width: 800px;">
 				<div class="imgcontainer" style="display:flex; justify-content: center;">
 					<!--<img src="logo_baer.svg" style="height: 92px; margin-right: 30px">
 					<img src="logo_schrift.svg" style=" height: 92px;">-->
 				</div>
 
 				<div class="container">
-					<label for="email"><b>E-Mail-Adresse</b></label>
-					<input type="text" placeholder="@stud.hwr-berlin.de" name="email" required>
+					<label for="username"><b>Benutzername</b></label>
+					<input type="text" placeholder="Benutzername" name="username" v-model="username">
 
 					<label for="psw"><b>Passwort</b></label>
-					<input type="password" placeholder="Passwort eingeben" name="psw" required>
-						
-					<button type="submit">Anmelden</button>
+					<input type="password" placeholder="Passwort eingeben" name="psw" v-model="password">
+                    
+					<button v-on:click="login" :disabled="nameMissing || passwordMissing || loading">Anmelden</button>
 					<label>
-					<input type="checkbox" checked="checked" name="remember"> Anmeldenamen merken
-					</label>
-				</div>
-				<?php
-					if(isset($_POST['email']) && isset($_POST['psw'])) {
-						$email = $_POST['email'];
-						$passwort = $_POST['psw'];
-						if ($passwort=='hwr' && $email=="hwr@stud.hwr-berlin.de"){
-							header("Location: bueroreservierung.php");
-							exit();
-						}
-						else {
-							echo 'Die eingegeben Daten stimmen nicht überein :(';
-							
-						}
-					}
-				?>
-								
+					<input type="checkbox" checked="checked" name="remember"> Anmeldenamen merken</label>
+                    <div v-if="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+				</div>								
 
 				<div class="container" style="background-color:#f1f1f1; height: 25px">
 					<span class="psw"><a href="#">Passwort vergessen?</a></span>
 				</div>
-            </form>
+            </div>
         </div>
         <div class="background">
         </div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://unpkg.com/vue@2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+        <script src="js/login.js"></script>
     </body>
 </html>

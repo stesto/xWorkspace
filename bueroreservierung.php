@@ -1,10 +1,18 @@
+<?php
+	if (!isset($_COOKIE["username"]) || !isset($_COOKIE["user_id"])) {
+		header("Location: login.php");
+		die();
+	}
+?>
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Demo</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 		<link href="css/bueroreservierung.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/theme3.css"/>
 	</head>
@@ -26,31 +34,36 @@
 								<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>
 							</li>
 						</ul>
-						<div class="navbar-nav dropdown">
-							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-								<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="24" height="24">
-								<span class="mx-1">{{ currentUser.name }}</span>
+						<div v-cloak  class="navbar-nav dropdown">
+							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" style="display: flex; align-items: center;">
+								<span class="material-symbols-outlined">person</span>
+								<span class="mx-1">{{ username }}</span>
 							</a>
 							<ul class="dropdown-menu">
-								<li class="dropdown-item" v-for="user in users" v-on:click="setUser(user)">{{ user.name }}</li>
+								<li class="dropdown-item" style="user-select: none; cursor: pointer;" v-on:click="logout">Abmelden</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</nav>
 			<!-- main -->
-			<main class="my-5">
+			<main v-cloak  class="my-5">
 				<div class="container-md">
 					<div class="row">
 						<div class="col-md-7 mb-4">
 							<!-- Reserviert -->
-							<div style="display: flex;">
-								<div v-for="tab in reservierungTabs" class="reservierung-tab" :class="{ 'selected': selectedTab === tab }" v-on:click="selectTab(tab)">
-									<span>{{ tab }}</span>
+							<div style="display: flex; justify-content: space-between; margin-top: 10px;">
+								<h4 >Deine Reservierungen</h2>
+								<div style="display: flex;">
+									<div v-for="tab in reservierungTabs" class="reservierung-tab" :class="{ 'selected': selectedTab === tab }" :title="tab.title" v-on:click="selectTab(tab)">
+										<span class="material-symbols-outlined">{{ tab.symbol }}</span>
+									</div>
 								</div>
 							</div>
-							<div class="material-shadow" v-show="selectedTab === 'Liste'" >
-								<h4 >Deine Reservierungen</h2>
+							<div v-show="selectedTab === reservierungTabs[0]" class="container">
+								<div id="caleandar"></div>
+							</div>
+							<div class="material-shadow" v-show="selectedTab === reservierungTabs[1]" >
 								<div>
 									<div v-for="reservation in reservations" class="reservation-div">
 										<div>
@@ -65,9 +78,6 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							<div v-show="selectedTab === 'Kalender'" class="container">
-								<div id="caleandar"></div>
 							</div>
 						</div>
 						<!-- Suche -->
@@ -137,6 +147,7 @@
 		<script src="https://unpkg.com/vue@2"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 		<script src="js/caleandar.js"></script>
 		<script src="js/bueroreservierung.js"></script>
 	</body>

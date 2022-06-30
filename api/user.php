@@ -6,10 +6,14 @@
         $password = $_GET["Password"];
 
         $query = 
-        "SELECT 
-             ID, Name
-        FROM Benutzer  
-        WHERE Name = '$name' AND Password = '$password';";
+            "SELECT 
+                ID, 
+                Name
+            FROM 
+                Benutzer  
+            WHERE 
+                Name = '$name' 
+                AND Password = '$password'";
 
         $users = db::getInstance()->query_to_array($query);
 
