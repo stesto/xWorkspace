@@ -70,7 +70,7 @@
 						$email = $_POST['email'];
 						$passwort = $_POST['psw'];
 						if ($passwort=='hwr' && $email=="hwr@stud.hwr-berlin.de"){
-							header("Location: /collab/bueroreservierung.php");
+							header("Location: bueroreservierung.php");
 							exit();
 						}
 						else {
