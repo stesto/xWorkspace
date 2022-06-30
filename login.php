@@ -24,16 +24,12 @@
         }
 
         #background {
-            width: 100%;
-            height: 100%;
-            background-image: url("CS_14_web.png");
-            background-repeat: no-repeat;
-            background-size: auto;
-            position: absolute; 
-            top:0;
-            left:0;
+            background-image: url(CS_14_web.png);
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
             z-index: -999999;
-
             filter: blur(8px);
             -webkit-filter: blur(8px);
         }
