@@ -6,6 +6,20 @@
         body {font-family: "Segoe UI", Helvetica, sans-serif;}
         form {border: 3px solid #f1f1f1;}
 
+        .background {
+            width: 100%;
+            height: 100%;
+            background-image: url("CS_14_web.png");
+            background-repeat: no-repeat;
+            position: absolute; 
+            top:0;
+            left:0;
+            z-index: -999999;
+
+            filter: blur(8px);
+            -webkit-filter: blur(8px);
+        }
+
         input[type=text], input[type=password] {
             width: 100%;
             padding: 12px 20px;
@@ -16,7 +30,7 @@
         }
 
         button {
-            background-color: #D50C2F;
+            background-color: #45405d;
             color: white;
             padding: 14px 20px;
             margin: 8px 0;
@@ -27,7 +41,7 @@
 
         button:hover {
             opacity: 0.8;
-            background-color: #b10a27;
+            background-color: #33313d;
         }
 
         .imgcontainer {
@@ -49,8 +63,8 @@
         <div style="display: flex;justify-content: center; margin-top: 80px;">
             <form action="login.php" method="post" style="width: 800px;">
 				<div class="imgcontainer" style="display:flex; justify-content: center;">
-					<img src="logo_baer.svg" style="height: 92px; margin-right: 30px">
-					<img src="logo_schrift.svg" style=" height: 92px;">
+					<!--<img src="logo_baer.svg" style="height: 92px; margin-right: 30px">
+					<img src="logo_schrift.svg" style=" height: 92px;">-->
 				</div>
 
 				<div class="container">
@@ -85,6 +99,8 @@
 					<span class="psw"><a href="#">Passwort vergessen?</a></span>
 				</div>
             </form>
+        </div>
+        <div class="background">
         </div>
     </body>
 </html>
