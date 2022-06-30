@@ -2,15 +2,26 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
     <style>
-        body {font-family: "Segoe UI", Helvetica, sans-serif;}
-        form {border: 3px solid #f1f1f1;}
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        form {
+            border-radius: 15px;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0, 0.4);
+        }
 
-        .background {
+        #background {
             width: 100%;
             height: 100%;
             background-image: url("CS_14_web.png");
             background-repeat: no-repeat;
+            background-size: auto;
             position: absolute; 
             top:0;
             left:0;
@@ -20,28 +31,77 @@
             -webkit-filter: blur(8px);
         }
 
+        #header {
+            height: 100px;
+            margin: 25px 25px 50px 25px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #logo {
+            width:100px;
+            height:100px;
+            float:left;
+            background-size: 100% 100%;
+            background-image: url("media/xWS_Logo.png");
+            border-radius: 15px;
+        }
+
+        #title {
+            height: 100px;
+            float:left;
+        }
+
+        .title_text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size:92px;
+            color: white;
+            text-shadow: 4px 4px #000000;
+            margin:0;
+            padding: 0 0 0 10px;
+        }
+
+        ::placeholder {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            font-weight: 500;
+        }
+
+        .stretch {
+            width:100%;
+            height:100%;
+}
+
         input[type=text], input[type=password] {
+            background-color: rgba(7,25,78, 0.0);
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
             display: inline-block;
-            border: 1px solid #ccc;
+            border: none;
+            border-bottom: 3px solid #ccc;
             box-sizing: border-box;
         }
 
         button {
-            background-color: #45405d;
+            background-color: #34495e;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
             color: white;
             padding: 14px 20px;
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 100%;
+            width: 25%;
+            float: right;
+            margin: 25px 0 16px 0;
+            border-radius: 3px;
         }
 
         button:hover {
             opacity: 0.8;
-            background-color: #33313d;
+            background-color: #2c3e50;
         }
 
         .imgcontainer {
@@ -62,22 +122,26 @@
     <body>
         <div style="display: flex;justify-content: center; margin-top: 80px;">
             <form action="login.php" method="post" style="width: 800px;">
-				<div class="imgcontainer" style="display:flex; justify-content: center;">
-					<!--<img src="logo_baer.svg" style="height: 92px; margin-right: 30px">
-					<img src="logo_schrift.svg" style=" height: 92px;">-->
-				</div>
-
+				<!--<div class="imgcontainer" style="display:flex; justify-content: center;">
+					<img src="logo_baer.svg" style="height: 92px; margin-right: 30px">
+					<img src="logo_schrift.svg" style=" height: 92px;">
+                    <h1>xWS</h1>
+				</div>-->
+                <div id="header">
+                <h1 id="title" class="title_text">xWorkspace</h1>
+                </div>
 				<div class="container">
-					<label for="email"><b>E-Mail-Adresse</b></label>
-					<input type="text" placeholder="@stud.hwr-berlin.de" name="email" required>
+					<!--<label for="email"><b>E-Mail-Adresse</b></label>-->
+					<input type="text" placeholder="Name" name="email" required>
 
-					<label for="psw"><b>Passwort</b></label>
-					<input type="password" placeholder="Passwort eingeben" name="psw" required>
+					<!--<label for="psw"><b>Passwort</b></label>-->
+					<input type="password" placeholder="Passwort" name="psw" required>
 						
-					<button type="submit">Anmelden</button>
-					<label>
+					<button type="submit" >Anmelden</button>
+                    <br />
+					<!--<label>
 					<input type="checkbox" checked="checked" name="remember"> Anmeldenamen merken
-					</label>
+					</label>-->
 				</div>
 				<?php
 					if(isset($_POST['email']) && isset($_POST['psw'])) {
@@ -95,12 +159,12 @@
 				?>
 								
 
-				<div class="container" style="background-color:#f1f1f1; height: 25px">
+				<!--<div class="container" style="background-color:#f1f1f1; height: 25px">
 					<span class="psw"><a href="#">Passwort vergessen?</a></span>
-				</div>
+				</div>-->
             </form>
         </div>
-        <div class="background">
+        <div id="background" class="stretch">
         </div>
     </body>
 </html>
