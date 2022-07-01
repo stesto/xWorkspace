@@ -36,8 +36,8 @@
 - [x] Implementierung von Datenbank in das xWS Tool
 - [x] Verfügbarkeiten und eigene Termine anzeigen lassen
 - [x] Raumsuche nach Datum und Zeit
+- [x] Designänderungen
 - [ ] Buchung stornieren
-- [ ] Designänderungen
     
 <p align="right">(<a href="#top">nach oben</a>)</p>
 
