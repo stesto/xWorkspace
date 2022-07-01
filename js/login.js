@@ -10,6 +10,9 @@ var vueRoot = {
     },
     methods: {
         login() {
+            if (this.nameMissing || this.passwordMissing || this.loading)
+                return;
+
             this.loading = true;
 
             $.get('api/user.php', {
@@ -22,6 +25,7 @@ var vueRoot = {
                 
                 if (result.length == 0) {
                     vueRoot.data.invalidCreds = true;
+                    alert('Die eingegebenen Daten stimmen nicht');
                     return;
                 }
 
