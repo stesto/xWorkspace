@@ -71,3 +71,7 @@ Reservierung(**ID**, <ins>BenutzerID</ins>, <ins>RaumID</ins>, Von, Bis, Datum)
 - [Vue.js](https://vuejs.org/)
 
 <p align="right">(<a href="#top">nach oben</a>)</p>
+
+## UI/UX Prototyp
+
+https://www.figma.com/file/C9jDSH8pYWVMZhPsl88JDO/xWorkspace?node-id=0%3A1
