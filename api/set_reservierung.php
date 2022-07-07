@@ -1,18 +1,18 @@
 <?php
     require_once "_db.php";
 
-    if (isset($_POST["cmd"]) && $_POST["cmd"] == "new" 
-        && isset($_POST["benutzerId"]) 
-        && isset($_POST["raumId"])
-        && isset($_POST["datum"])
-        && isset($_POST["von"])
-        && isset($_POST["bis"])) 
+    if (isset($_GET["cmd"]) && $_GET["cmd"] == "new" 
+        && isset($_GET["benutzerId"]) 
+        && isset($_GET["raumId"])
+        && isset($_GET["datum"])
+        && isset($_GET["von"])
+        && isset($_GET["bis"])) 
     {
-        $benutzerId = $_POST["benutzerId"];
-        $raumId = $_POST["raumId"];
-        $datum = $_POST["datum"];
-        $von = $_POST["von"];
-        $bis = $_POST["bis"];
+        $benutzerId = $_GET["benutzerId"];
+        $raumId = $_GET["raumId"];
+        $datum = $_GET["datum"];
+        $von = $_GET["von"];
+        $bis = $_GET["bis"];
         
         $checkQuery = 
         "SELECT
@@ -42,9 +42,9 @@
 
         echo '{"info":"reservation_saved"}';
     }
-    elseif (isset($_POST["cmd"]) && $_POST["cmd"] == "delete" && isset($_POST["reservierungId"])) 
+    elseif (isset($_GET["cmd"]) && $_GET["cmd"] == "delete" && isset($_GET["reservierungId"])) 
     {
-        
+
     }
     else
     {

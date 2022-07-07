@@ -51,18 +51,27 @@ var vueRoot = {
                 this.currentReservation = platz;
         },
         reserve(platz) {
-            this.reservations.push({
-                platz: platz,
-                datum: platz.datum,
-                von: platz.von,
-                bis: platz.bis,
-            });
+            // console.log(platz);
+            // console.log(this.currentReservation);
+            $.get('api/set_reservierung.php', {
+                cmd: 'new',
+                benutzerId: this.user_id,
+                raumId: platz.ID,
+                datum: this.reservationBooking.datum,
+                von: this.reservationBooking.von,
+                bis: this.reservationBooking.bis
+            })
+            .done(function(data) {
+                this.getReservierungen();
+            }.bind(this));
+            
+
             this.currentReservation = null;
         },
         getFreeRooms() {
-            this.reservationBooking.datum=this.reservationSearch.datum;
-            this.reservationBooking.von=this.reservationSearch.von;
-            this.reservationBooking.bis=this.reservationSearch.bis;
+            this.reservationBooking.datum = this.reservationSearch.datum;
+            this.reservationBooking.von = this.reservationSearch.von;
+            this.reservationBooking.bis = this.reservationSearch.bis;
             $.get('api/get_raum.php',
             {
                 datum: this.reservationSearch.datum,
