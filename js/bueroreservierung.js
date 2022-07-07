@@ -9,6 +9,12 @@ var reservationSearch = {
     bis: '',
  };
 
+ var reservationBooking = {
+    datum: '',
+    von: '',
+    bis: '',
+ };
+
 var reservierungTabs = [
     {
         symbol: 'calendar_month',
@@ -29,6 +35,7 @@ var vueRoot = {
         reservations: reservations,
         currentReservation: {},
         reservationSearch: reservationSearch,
+        reservationBooking: reservationBooking,
         reservierungTabs: reservierungTabs,
         selectedTab: reservierungTabs[0],
         searchText: ''
@@ -53,6 +60,9 @@ var vueRoot = {
             this.currentReservation = null;
         },
         getFreeRooms() {
+            this.reservationBooking.datum=this.reservationSearch.datum;
+            this.reservationBooking.von=this.reservationSearch.von;
+            this.reservationBooking.bis=this.reservationSearch.bis;
             $.get('api/get_raum.php',
             {
                 datum: this.reservationSearch.datum,
