@@ -51,10 +51,9 @@ var vueRoot = {
                 bis: platz.bis,
             });
             this.currentReservation = null;
-            sessionStorage.setItem('reservations', JSON.stringify(this.reservations));
         },
         getFreeRooms() {
-            $.get('api/raum.php',
+            $.get('api/get_raum.php',
             {
                 datum: this.reservationSearch.datum,
                 von: this.reservationSearch.von,
@@ -70,7 +69,7 @@ var vueRoot = {
             });
         },
         getReservierungen() {
-            $.get('api/reservierung.php', {
+            $.get('api/get_reservierung.php', {
                 benutzerId: this.user_id
             })
             .done(function(data) {
