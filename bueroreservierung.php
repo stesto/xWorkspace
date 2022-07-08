@@ -76,6 +76,9 @@
 											<span>{{ reservation.Von }}</span>
 											<span>{{ reservation.Bis }}</span>
 										</div>
+										<div>
+											<button type="button" class="btn btn-primary justify-content-end" style="margin-top: auto;" value="Cancel" onclick="history.go(-1)">Stornieren</button>
+										</div>
 									</div>
 								</div>
 							</div>
