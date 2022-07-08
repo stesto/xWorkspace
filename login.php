@@ -1,3 +1,10 @@
+<?php
+	if (isset($_COOKIE["username"]) && isset($_COOKIE["user_id"])) {
+		header("Location: bueroreservierung.php");
+		die();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
