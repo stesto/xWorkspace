@@ -116,6 +116,17 @@ var vueRoot = {
                 caleandar(element, events, settings);
             });
         },
+        cancel(reservierung) {
+            reservierung.deleting = true;
+            this.$forceUpdate();
+            $.get('api/set_reservierung.php', {
+                cmd: 'delete',
+                reservierungId: reservierung.ReservierungID,
+            })
+            .done(function(data) {
+                this.getReservierungen();
+            }.bind(this));
+        },
         logout() {
             Cookies.remove('user_id');
             Cookies.remove('username');

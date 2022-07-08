@@ -3,7 +3,9 @@
 
     $query = 
         "SELECT 
-            * 
+            res.ID AS ReservierungID,
+            res.*,
+            rau.*
         FROM Reservierung res 
         JOIN Raum rau ON res.RaumID = rau.ID";
 

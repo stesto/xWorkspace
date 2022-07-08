@@ -44,7 +44,12 @@
     }
     elseif (isset($_GET["cmd"]) && $_GET["cmd"] == "delete" && isset($_GET["reservierungId"])) 
     {
+        $reservierungId = $_GET["reservierungId"];
 
+        $query = "DELETE FROM Reservierung WHERE ID = $reservierungId";
+        db::getInstance()->query($query);
+
+        echo '{"info":"reservation_deleted"}';
     }
     else
     {
