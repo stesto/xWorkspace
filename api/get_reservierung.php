@@ -22,10 +22,10 @@
 
     $features = db::getInstance()->query_to_array(
         "SELECT 
-            rf.RaumID, 
-            rf.FeatureID, 
-            f.Name 
-        FROM Raum_Feature rf 
+            rf.RaumID,
+            rf.FeatureID,
+            f.Name
+        FROM Raum_Feature rf
         JOIN Feature f ON rf.FeatureID = f.ID
         WHERE rf.RaumID IN ($roomIds)"
     );

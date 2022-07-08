@@ -119,23 +119,29 @@
 										</div>
 										<button type="button" class="btn btn-outline-primary justify-content-end" style="margin: auto;" v-on:click="toggleReservation(platz)">Reservieren</button>
 									</div>
-									<div v-if="platz == currentReservation" style=" margin-top: 10px; padding: 6px 0 6px 12px;">
-										<h3>{{ platz.raum }} reservieren</h3>
+									<div v-if="platz == currentReservation" style=" margin-top: 10px; padding: 6px 6px 6px 12px;border-left:6px solid #555555;background-color: #e7e7e7;">
+										<!--<h3>Raum {{ platz.Nummer }}</h3>-->
 										<div style="display: flex; justify-content: space-between; align-items: flex-end;" >
 											<div>
 												<label>Datum<span class="text-danger"></span></label>
-												<input type="date" name="date" class="form-control" v-model="platz.datum">
+												<br />
+												<label>{{ reservationBooking.datum }}</label>
+												<!--<input type="date" name="date" class="form-control" v-model="platz.datum">-->
 											</div>
 											<div>
 												<label>Von<span class="text-danger"></span></label>
-												<input type="time" name="von" class="form-control" v-model="platz.von">
+												<br />
+												<label>{{ reservationBooking.von }}</label>
+												<!--<input type="time" name="von" class="form-control" v-model="platz.von">-->
 											</div>
 											<div>
 												<label>Bis<span class="text-danger"></span></label>
-												<input type="time" name="bis" class="form-control" v-model="platz.bis">
+												<br />
+												<label>{{ reservationBooking.bis }}</label>
+												<!--<input type="time" name="bis" class="form-control" v-model="platz.bis">-->
 											</div>
 											<div>
-												<button type="button" class="btn btn-primary justify-content-end" style="margin-top: auto;" v-on:click="reserve(platz)">Buchen</button>
+												<button type="button" class="btn btn-primary justify-content-end" style="margin-top: auto;background-color: #555555;border-color:#555555;" v-on:click="reserve(platz)">Buchen</button>
 											</div>
 										</div>
 									</div>
