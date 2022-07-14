@@ -1,6 +1,6 @@
 <?php
-    define('DBHOST','remotemysql.com');
-    define('DBUSER','08DV8fAk4g');
-    define('DBPWD','XXCokHqqQj');
-    define('DBNAME','08DV8fAk4g');
+    define('DBHOST','localhost');
+    define('DBUSER','xws_user');
+    define('DBPWD','xws123');
+    define('DBNAME','db_xws');
 ?>
