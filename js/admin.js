@@ -38,7 +38,37 @@ let user_array = [
         name: 'Joachim Kehl'
     }
 ]
-
+let room_array = [
+    {
+        id: 0,
+        name: '6A 125'
+    }, 
+    {
+        id: 1,
+        name: '6A 124'
+    }, 
+    {
+        id: 2,
+        name: '6A 123'
+    }, 
+    {
+        id: 3,
+        name: '6A 122'
+    }, 
+    {
+        id: 4,
+        name: '6A 121'
+    }, 
+    {
+        id: 5,
+        name: '6A 120'
+    }, 
+    {
+        id: 6,
+        name: '6A 119'
+    } 
+    
+]
 
 
 vueRoot = {
@@ -46,7 +76,9 @@ vueRoot = {
     data: {
         testtext: 'Hello',
         users: user_array,
-        searchString: ''
+        searchString: '',
+        rooms: room_array,
+        raumString:''
     },
     methods: {
     },
@@ -63,8 +95,20 @@ vueRoot = {
             }
 
             return filtered;
-        }
+          }, roomsFiltered(){
+            let filtered = [];
+
+            for(let i = 0; i < this.rooms.length; i ++){
+                let room = this.rooms[i]
+                if(room.name.toLowerCase().includes(this.raumString.toLowerCase())){
+                    filtered.push(room);
+                }
+
+            }
+            return filtered;
+       }
     }
+    
 }
 
 new Vue(vueRoot);

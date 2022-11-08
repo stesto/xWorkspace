@@ -85,19 +85,19 @@
 									</tr>
 								</table>
 							</div>
-							<!--Registrierten Nutzer-->
+							<!--Registrierten Räume-->
 							<div class="material-shadow"> <!-- margin left hierrein-->
-								<h4>Alle registrierten Nutzer</h4>
-								<input v-model="searchString" type="text" style="width: 100%" placeholder="Nutzer suchen">
-								<table>
-									<tr v-for="(user, idx) in usersFiltered">
+								<h4>Alle hinzugefügten Räume</h4>
+								<input v-model="raumString" type="text" style="width: 100%" placeholder="Raum suchen">
+								<table style="width:120%">
+									<tr v-for="(room, idx) in roomsFiltered">
 										<td>
-											{{ idx + 1 }}. {{ user.name }}
+											{{ idx + 1 }}. {{ room.name }}
 										</td>
 										<td>
-											<a :href="'/user/edit.php?id=' + user.id">Bearbeiten</a>
+											<a :href="'/user/edit.php?id=' + room.id">Bearbeiten</a>
 											<span>/</span>
-											<a :href="'/user/delete.php?id=' + user.id">Löschen</a>
+											<a :href="'/user/delete.php?id=' + room.id">Löschen</a>
 										</td>
 									</tr>
 								</table>
