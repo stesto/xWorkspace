@@ -73,9 +73,9 @@
 								<h4>Alle registrierten Nutzer</h4>
 								<input v-model="searchString" type="text" style="width: 100%" placeholder="Nutzer suchen">
 								<table>
-									<tr v-for="(user, idx) in usersFiltered">
+									<tr v-for="(user, index) in usersFiltered">
 										<td>
-											{{ idx + 1 }}. {{ user.name }}
+											{{ index + 1 }}. {{ user.name }}
 										</td>
 										<td>
 											<a :href="'/user/edit.php?id=' + user.id">Bearbeiten</a>
