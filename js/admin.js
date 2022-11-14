@@ -81,8 +81,16 @@ vueRoot = {
         raumString:''
     },
     methods: {
+        removeUser(id){
+            this.users.splice(id, 1);
+            console.log(id); //Testausgabe bro
+        },
+        removeRoom(id){
+            this.rooms.splice(id,1);
+            console.log(id); // Testausgabe ob Click funktioniert --> ja funkt.
+        }
     },
-    computed: {
+    computed:   {
         usersFiltered() {
             let filtered = [];
             
@@ -100,7 +108,7 @@ vueRoot = {
 
             for(let i = 0; i < this.rooms.length; i ++){
                 let room = this.rooms[i]
-                if(room.name.toLowerCase().includes(this.raumString.toLowerCase())){
+                if (room.name.toLowerCase().includes(this.raumString.toLowerCase())){
                     filtered.push(room);
                 }
 
