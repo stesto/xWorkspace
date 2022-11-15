@@ -33,6 +33,8 @@
 							<li class="nav-item">
 								<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>
 							</li>
+								<a href="admin.php" class="nav-link active">Admin-Page</a>
+							</li>
 						</ul>
 						<div v-cloak  class="navbar-nav dropdown">
 							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" style="display: flex; align-items: center;">
