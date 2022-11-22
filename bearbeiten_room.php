@@ -64,49 +64,73 @@
 					</div>
 				</div>
 			</nav>
-			<!-- main -->
-			<main v-cloak  class="my-5">
+			<!-- main ---------------------------------------------------------------------------->
+			<main v-cloak class="my-5">
 				<div class="container-md">
 					<div class="row">
 						<div style="display: flex">
-							<!--Registrierten Nutzer-->
-							<div class="material-shadow">
-								<h4>Alle registrierten Nutzer</h4>
-								<input v-model="searchString" type="text" style="width: 100%" placeholder="Nutzer suchen">
-								<table>
-									<tr v-for="(user, index) in usersFiltered">
-										<td>
-											{{ index + 1 }}. {{ user.name }}
-										</td>
-										<td>
-											<a :href="'/user/edit.php?id=' + user.id">Bearbeiten</a>
-											<span>/</span>
-											<span v-on:click="removeUser(index)" class="removeUser">Löschen</span>
-										</td>
-									</tr>
-								</table>
-							</div>
-							<!--Registrierten Räume-->
-							<div class="material-shadow"> <!-- margin left hierrein-->
-								<h4>Alle hinzugefügten Räume</h4>
-								<input v-model="raumString" type="text" style="width: 100%" placeholder="Raum suchen">
-								<table style="width:120%">
-									<tr v-for="(room, idx) in roomsFiltered">
-										<td>
-											{{ idx + 1 }}. {{ room.name }}
-										</td>
-										<td>
-											<a :href="'bearbeiten_room.php?id=' + room.id">Bearbeiten</a>
-											<span>/</span>
-											<span v-on:click="removeRoom(idx)" class="removeRoom">Löschen</span>
-										</td>
-									</tr>
-								</table>
+							<!--Raum Bearbeiten-->
+							<div class="material-shadow" style="margin-bottom: 10px">
+								<h4>
+									<a>Raum bearbeiten:</a>
+									<a>""Name des Raumes"BSP: 6A 125"</a>
+								</h4>
+								<div>
+									<h4>Vorhandene Feauters:</h4>
+									<ul>
+										<li v-for="(feature, idx) in raum.features">
+											{{feature.Name}}
+											<a v-on:click="removefeature(idx)" class="removefeature">Löschen</a>
+										</li>
+										
+									</ul>
+								<div>
+									<h4>Features Hinzufügen:</h4>
+										<ul>
+											<li v-for="(feature, id) in features">
+												{{feature.Name}}
+												<a v-on:click="addfeature(feature, id)" class="addfeature">Hinzufügen</a>
+											</li>
+										</Ul>
+								</div>
+									<div>
+										<h4>Raum Name ändern:<h4>
+										<input v-model="raum.Nummer" type="text" style="width: 40%" placeholder="Name ändern">
+									</div>
+										<div>
+											<h4>Adresse des Raums ändern</h4>
+											<div>
+												<a>Neue Straße:</a>
+												<input v-model="raum.Straße" type="text" style="width: 20%" placeholder="Straße ändern">
+											</div>
+											<div>
+												<a>Neue Hausnummer:</a>
+												<input v-model="raum.HausNr" type="text" style="width: 40%" placeholder="Haus Nr. ändern">
+											</div>
+											<div>
+												<a>Ort ändern:</a>
+												<input v-model="raum.Ort" type="text" style="width: 40%" placeholder="Ort ändern">
+											</div>
+											<div>
+												<a>PLZ ändern:</a>
+												<input v-model="raum.PLZ" type="text" style="width: 40%" placeholder="PLZ ändern">
+											</div>
+											<div>
+												<a>Platzanzahl ändern</a>
+												<input v-model="raum.Plaetze" type="text" style="width: 40%" placeholder="Plaetze ändern">
+											</div>
+										</div>
+								
+								
 							</div>
 						</div>
+
 					</div>
+
 				</div>
+
 			</main>
+	
 		</div>
 				
          
@@ -116,7 +140,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-		<script src="js/admin.js"></script>
+		<script src="js/bearbeiten_room.js"></script>
 		<!-- <script src="js/bueroreservierung.js"></script> -->
 	</body>
 </html>
