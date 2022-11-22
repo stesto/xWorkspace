@@ -38,37 +38,9 @@ let user_array = [
         name: 'Joachim Kehl'
     }
 ]
-let room_array = [
-    {
-        id: 0,
-        name: '6A 125'
-    }, 
-    {
-        id: 1,
-        name: '6A 124'
-    }, 
-    {
-        id: 2,
-        name: '6A 123'
-    }, 
-    {
-        id: 3,
-        name: '6A 122'
-    }, 
-    {
-        id: 4,
-        name: '6A 121'
-    }, 
-    {
-        id: 5,
-        name: '6A 120'
-    }, 
-    {
-        id: 6,
-        name: '6A 119'
-    } 
+
     
-]
+
 
 
 vueRoot = {
@@ -77,7 +49,7 @@ vueRoot = {
         testtext: 'Hello',
         users: user_array,
         searchString: '',
-        rooms: room_array,
+        rooms:[],
         raumString:''
     },
     methods: {
@@ -108,13 +80,21 @@ vueRoot = {
 
             for(let i = 0; i < this.rooms.length; i ++){
                 let room = this.rooms[i]
-                if (room.name.toLowerCase().includes(this.raumString.toLowerCase())){
+                if (room.Nummer.toLowerCase().includes(this.raumString.toLowerCase())){
                     filtered.push(room);
                 }
 
             }
             return filtered;
        }
+    },
+    mounted(){
+        fetch('api/v1/rooms/')
+        .then((response) => response.json())
+        .then((data) => {
+            this.rooms = data.rooms
+
+        });
     }
     
 }

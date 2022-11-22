@@ -29,6 +29,9 @@
 			clear: both;
 		}
 </style> -->
+	<script>
+        let roomId = <?php echo $_GET["id"]; ?> //"Raum ID gemeint"
+    </script>
 	</head>
 	<body class="d-flex flex-column h-100">
 		<div id="vue-body">
@@ -78,7 +81,7 @@
 								<div>
 									<h4>Vorhandene Feauters:</h4>
 									<ul>
-										<li v-for="(feature, idx) in raum.features">
+										<li v-for="(feature, idx) in raum.Features">
 											{{feature.Name}}
 											<a v-on:click="removefeature(idx)" class="removefeature">Löschen</a>
 										</li>

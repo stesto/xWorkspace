@@ -92,10 +92,10 @@
 								<table style="width:120%">
 									<tr v-for="(room, idx) in roomsFiltered">
 										<td>
-											{{ idx + 1 }}. {{ room.name }}
+											{{ idx + 1 }}. {{ room.Nummer }}
 										</td>
 										<td>
-											<a :href="'bearbeiten_room.php?id=' + room.id">Bearbeiten</a>
+											<a :href="'bearbeiten_room.php?id=' + room.ID">Bearbeiten</a>
 											<span>/</span>
 											<span v-on:click="removeRoom(idx)" class="removeRoom">Löschen</span>
 										</td>
