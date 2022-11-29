@@ -76,7 +76,6 @@
 							<div class="material-shadow" style="margin-bottom: 10px">
 								<h4>
 									<a>Raum bearbeiten:</a>
-									<a>""Name des Raumes"BSP: 6A 125"</a>
 								</h4>
 								<div>
 									<h4>Vorhandene Feauters:</h4>
@@ -98,25 +97,25 @@
 								</div>
 									<div>
 										<h4>Raum Name ändern:<h4>
-										<input v-model="raum.Nummer" type="text" style="width: 40%" placeholder="Name ändern">
+										<input v-model="raum.Nummer" type="text" style="width: 30%" placeholder="Name ändern">
 									</div>
 										<div>
 											<h4>Adresse des Raums ändern</h4>
 											<div>
 												<a>Neue Straße:</a>
-												<input v-model="raum.Straße" type="text" style="width: 20%" placeholder="Straße ändern">
+												<input v-model="raum.Straße" type="text" style="width: 42%" placeholder="Straße ändern">
 											</div>
 											<div>
 												<a>Neue Hausnummer:</a>
-												<input v-model="raum.HausNr" type="text" style="width: 40%" placeholder="Haus Nr. ändern">
+												<input v-model="raum.HausNr" type="text" style="width: 12%" placeholder="Haus Nr. ändern">
 											</div>
 											<div>
 												<a>Ort ändern:</a>
-												<input v-model="raum.Ort" type="text" style="width: 40%" placeholder="Ort ändern">
+												<input v-model="raum.Ort" type="text" style="width: 20%" placeholder="Ort ändern">
 											</div>
 											<div>
 												<a>PLZ ändern:</a>
-												<input v-model="raum.PLZ" type="text" style="width: 40%" placeholder="PLZ ändern">
+												<input v-model="raum.PLZ" type="text" style="width: 20%" placeholder="PLZ ändern">
 											</div>
 											<div>
 												<a>Platzanzahl ändern</a>

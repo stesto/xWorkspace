@@ -1,13 +1,5 @@
 const { createApp } = Vue
 
-// let mikel= [
-//     'Hi',
-//     '2',
-//     {Name:"Justin",Alter:6}
-// ]
-
-// ali[1];
-
 vueRoot = {
     el: '#vue-body',
     data: {
@@ -22,7 +14,7 @@ vueRoot = {
         },
         addfeature(obj, id){
             this.raum.Features.push(obj);
-            this.Features.splice(id, 1); // die 1 steht für, wieviele Objekte gelöscht werden sollen
+            this.features.splice(id, 1); // die 1 steht für, wieviele Objekte gelöscht werden sollen
             console.log(obj);
         }
     },
