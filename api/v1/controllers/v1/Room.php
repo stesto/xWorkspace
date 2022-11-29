@@ -12,8 +12,6 @@ namespace BestShop\v1;
 use Db;
 use BestShop\Route;
 use BestShop\Database\DbQuery;
-use BestShop\Product\Product as ProductObject;
-use BestShop\Product\Category as CategoryObject;
 use BestShop\Util\ArrayUtils;
 use BestShop\Validate;
 
@@ -23,12 +21,20 @@ class Room extends Route {
         $api = $this->api;
         $db = Db::getInstance();
 
-        $roomsSql = new DbQuery();
-        $roomsSql->select('*')->from('Raum');
+        $roomsSql = 
+            "SELECT
+                *
+            FROM
+                Raum";
         $rooms = $db->executeS($roomsSql);
 
-        $featuresSql = new DbQuery();
-        $featuresSql->select('rf.RaumID, f.*')->from('Raum_Feature', 'rf')->join('JOIN Feature f ON f.ID = rf.FeatureID');
+        $featuresSql = 
+            "SELECT 
+                rf.RaumID,
+                f.*
+            FROM
+                Raum_Feature rf
+            JOIN Feature f ON f.ID = rf.FeatureID";
         $features = $db->executeS($featuresSql);
 
         foreach ($rooms as &$room) {
@@ -43,9 +49,9 @@ class Room extends Route {
         }
 
         return $api->response([
-			'success' => true,
-			'rooms' => $rooms
-		]);
+            'success' => true,
+            'rooms' => $rooms
+        ]);
     }
 
     public function getRoom($roomId) {
@@ -55,14 +61,19 @@ class Room extends Route {
         if (!Validate::isInt($roomId)) {
             return $api->response([
                 'success' => false,
-                'message' => 'id_wrong_type'
+                'message' => 'id_must_be_integer'
             ]);
         }
 
-        $roomId = pSQL($roomId);
+        $roomId = $db->escape($roomId);
         
-        $roomsSql = new DbQuery();
-        $roomsSql->select('*')->from('Raum')->where('ID = '.$roomId);
+        $roomsSql = 
+            "SELECT
+                *
+            FROM
+                Raum
+            WHERE
+                ID = $roomId";
         $rooms = $db->executeS($roomsSql);
 
         if (count($rooms) == 0) {
@@ -74,26 +85,92 @@ class Room extends Route {
 
         $room = $rooms[0];
 
-        $featuresSql = new DbQuery();
-        $featuresSql
-            ->select('rf.RaumID, f.*')
-            ->from('Raum_Feature', 'rf')
-            ->join('JOIN Feature f ON f.ID = rf.FeatureID')
-            ->where("rf.RaumID = $roomId");
+        $featuresSql = 
+            "SELECT
+                rf.RaumID, 
+                f.*
+            FROM
+                Raum_Feature rf
+            JOIN Feature f ON f.ID = rf.FeatureID
+            WHERE
+                rf.RaumID = $roomId";
         $features = $db->executeS($featuresSql);
 
         $roomFeatures = array();
-            foreach ($features as $feature) {
-                if ($feature["RaumID"] == $room["ID"]) {
-                    unset($feature["RaumID"]);
-                    array_push($roomFeatures, $feature);
-                }
+        foreach ($features as $feature) {
+            if ($feature["RaumID"] == $room["ID"]) {
+                unset($feature["RaumID"]);
+                array_push($roomFeatures, $feature);
             }
-            $room["Features"] = $roomFeatures;
+        }
+        $room["Features"] = $roomFeatures;
 
         return $api->response([
-			'success' => true,
-			'room' => $room
-		]);
+            'success' => true,
+            'room' => $room
+        ]);
+    }
+
+    public function updateRoom($roomId) {
+        $api = $this->api;
+        $db = Db::getInstance();
+
+        if (!Validate::isInt($roomId)) {
+            return $api->response([
+                'success' => false,
+                'message' => 'id_must_be_integer'
+            ]);
+        }
+        
+        $payload = $api->request()->post();
+        
+        $fields = array(
+            "Nummer", "Straße", "HausNr", "Ort", "PLZ", "Plaetze", "Sitzform"
+        );
+
+        foreach ($fields as $field) {
+            if (!ArrayUtils::has($payload, $field)) {
+                return $api->response([
+                    'success' => false,
+                    'message' => 'missing_field',
+                    'field' => $field
+                ]);
+            }
+        }
+
+        if (!Validate::isNullOrUnsignedId($payload["Plaetze"])) {
+            return $api->response([
+                'success' => false,
+                'message' => 'must_be_a_positive_integer',
+                'field' => 'Plaetze'
+            ]);
+        }
+
+        $insertQuery = "UPDATE Raum SET ";
+        $insertValues = array();
+        foreach ($fields as $field) {
+            $value = $payload[$field];
+
+            if ($value == NULL)
+                $value = "NULL";
+            else
+                $value = "'".$db->escape($value)."'";
+
+            array_push($insertValues, "`" .$field. "`" . "=" . $value);
+        }
+
+        $insertQuery = $insertQuery . implode(",", $insertValues) . " WHERE ID=$roomId;";
+        $result = $db->executeS($insertQuery);
+
+        return $api->response([
+            'success' => true,
+            'room' => $payload
+        ]);
+    }
+
+    public function addRoom() {
+        
     }
 }
+
+
