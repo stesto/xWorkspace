@@ -94,6 +94,7 @@
 												<a v-on:click="addfeature(feature, id)" class="addfeature">Hinzufügen</a>
 											</li>
 										</Ul>
+										<button v-on:click="speicherRaum()" class="" style="text-align: right;">Speichern</button>
 								</div>
 									<div>
 										<h4>Raum Name ändern:<h4>

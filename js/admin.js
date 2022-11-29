@@ -89,12 +89,22 @@ vueRoot = {
        }
     },
     mounted(){
-        fetch('api/v1/rooms/')
-        .then((response) => response.json())
-        .then((data) => {
-            this.rooms = data.rooms
+        console.log(this);
+        $.ajax({
+            url: 'api/v1/rooms/',
+            dataType: '',
+            type: "GET",
+        }).done(function(data) { //done== funktion --> nimmt paramater entgegen
+            this.rooms = data.rooms     
+        }.bind(this)); //VUE kram
 
-        });
+
+        // fetch('api/v1/rooms/')
+        // .then((response) => response.json())
+        // .then((data) => {
+        //     this.rooms = data.rooms
+
+        // });
     }
     
 }

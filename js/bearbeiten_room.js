@@ -16,6 +16,9 @@ vueRoot = {
             this.raum.Features.push(obj);
             this.features.splice(id, 1); // die 1 steht für, wieviele Objekte gelöscht werden sollen
             console.log(obj);
+        },
+        speicherRaum(){
+            console.log(speicherRaum)
         }
     },
     computed:   {
