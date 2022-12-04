@@ -94,7 +94,7 @@ vueRoot = {
             url: 'api/v1/rooms/',
             dataType: '',
             type: "GET",
-        }).done(function(data) { //done== funktion --> nimmt paramater entgegen
+        }).done(function(data) { //done== funktion --> nimmt paramater entgegen -->Function
             this.rooms = data.rooms     
         }.bind(this)); //VUE kram
 
