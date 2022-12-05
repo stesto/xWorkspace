@@ -18,6 +18,9 @@ use BestShop\Validate;
 
 class Room extends Route {
 
+    /**
+     * Returns all rooms and their features using GET
+     */
     public function getRooms() {
         $api = $this->api;
         $db = Db::getInstance();
@@ -55,6 +58,9 @@ class Room extends Route {
         ]);
     }
 
+    /**
+     * Returns the room with the given id and its features using GET
+     */
     public function getRoom($roomId) {
         $api = $this->api;
         $db = Db::getInstance();
@@ -112,6 +118,9 @@ class Room extends Route {
         ]);
     }
 
+    /**
+     * Overwrites the room of the given id using PUT
+     */
     public function updateRoom($roomId) {
         $api = $this->api;
         $db = Db::getInstance();
@@ -199,14 +208,15 @@ class Room extends Route {
 
         $result = $db->executeS($insertQuery);
 
-        echo var_dump($result);
-
         return $api->response([
             'success' => true,
             'room' => $payload
         ]);
     }
 
+    /**
+     * Inserts a new room using POST
+     */
     public function addRoom() {
         
     }
