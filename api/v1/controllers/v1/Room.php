@@ -13,6 +13,7 @@ use Db;
 use BestShop\Route;
 use BestShop\Database\DbQuery;
 use BestShop\Util\ArrayUtils;
+use BestShop\Tools;
 use BestShop\Validate;
 
 class Room extends Route {
@@ -145,22 +146,60 @@ class Room extends Route {
                 'field' => 'Plaetze'
             ]);
         }
+        
+        $newFeatures = array();
+
+        if (ArrayUtils::has($payload, "Features")) {
+            $features = $payload["Features"];
+            if (!is_array($features)) {
+                return $api->response([
+                    'success' => false,
+                    'message' => 'must_be_array',
+                    'field' => 'Features'
+                ]);
+            }
+
+            foreach ($features as $feature) {
+                if (!ArrayUtils::has($feature, "ID")) {
+                    return $api->response([
+                        'success' => false,
+                        'message' => 'missing_field_in_feature',
+                        'field' => 'ID'
+                    ]);
+                }
+
+                $featureId = $feature["ID"];
+                if (!Validate::isInt($featureId)) {
+                    return $api->response([
+                        'success' => false,
+                        'message' => 'must_be_a_positive_integer',
+                        'field' => 'ID'
+                    ]);
+                }
+
+                array_push($newFeatures, $featureId);
+            }
+        }
 
         $insertQuery = "UPDATE Raum SET ";
         $insertValues = array();
         foreach ($fields as $field) {
-            $value = $payload[$field];
-
-            if ($value == NULL)
-                $value = "NULL";
-            else
-                $value = "'".$db->escape($value)."'";
-
-            array_push($insertValues, "`" .$field. "`" . "=" . $value);
+            $value = Tools::sql_value($payload[$field]);
+            array_push($insertValues, "`$field`=$value");
         }
 
         $insertQuery = $insertQuery . implode(",", $insertValues) . " WHERE ID=$roomId;";
+        $insertQuery = $insertQuery . "DELETE FROM Raum_Feature WHERE RaumID=$roomId;";
+
+        if (count($newFeatures) > 0) {
+            $newFeatures = array_map(fn($id) => "($roomId,$id)", $newFeatures);
+            $newFeatures = implode(",", $newFeatures);
+            $insertQuery = $insertQuery . "INSERT INTO `Raum_Feature`(RaumID, FeatureID) VALUES $newFeatures;";
+        }
+
         $result = $db->executeS($insertQuery);
+
+        echo var_dump($result);
 
         return $api->response([
             'success' => true,
