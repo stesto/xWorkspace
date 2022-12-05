@@ -80,10 +80,11 @@ $params = $api->request->get();
 $requestPayload = $api->request->post();
 
 $api->group('/rooms', function() use ($api) {
-	$api->get('/?', 		'\BestShop\v1\Room:getRooms')->name('get_rooms');
-	$api->get('/:roomId?', 	'\BestShop\v1\Room:getRoom')->name('get_room');
-	$api->post('/?', 		'\BestShop\v1\Room:addRoom')->name('add_room');
-	$api->put('/:roomId?', 	'\BestShop\v1\Room:updateRoom')->name('update_room');
+	$api->get('/?', 		  '\BestShop\v1\Room:getRooms')->name('get_rooms');
+	$api->get('/:roomId?', 	  '\BestShop\v1\Room:getRoom')->name('get_room');
+	$api->post('/?', 		  '\BestShop\v1\Room:addRoom')->name('add_room');
+	$api->put('/:roomId?', 	  '\BestShop\v1\Room:updateRoom')->name('update_room');
+	$api->delete('/:roomId?', '\BestShop\v1\Room:deleteRoom')->name('delete_room');
 });
 
 // $api->group('/api', function () use ($api) {

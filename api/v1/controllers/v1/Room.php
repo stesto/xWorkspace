@@ -218,7 +218,106 @@ class Room extends Route {
      * Inserts a new room using POST
      */
     public function addRoom() {
+        $api = $this->api;
+        $db = Db::getInstance();
+
+        $payload = $api->request()->post();
         
+        $fields = array(
+            "Nummer", "Straße", "HausNr", "Ort", "PLZ", "Plaetze", "Sitzform"
+        );
+
+        foreach ($fields as $field) {
+            if (!ArrayUtils::has($payload, $field)) {
+                return $api->response([
+                    'success' => false,
+                    'message' => 'missing_field',
+                    'field' => $field
+                ]);
+            }
+        }
+
+        if (!Validate::isNullOrUnsignedId($payload["Plaetze"])) {
+            return $api->response([
+                'success' => false,
+                'message' => 'must_be_a_positive_integer',
+                'field' => 'Plaetze'
+            ]);
+        }
+        
+        $newFeatures = array();
+
+        if (ArrayUtils::has($payload, "Features")) {
+            $features = $payload["Features"];
+            if (!is_array($features)) {
+                return $api->response([
+                    'success' => false,
+                    'message' => 'must_be_array',
+                    'field' => 'Features'
+                ]);
+            }
+
+            foreach ($features as $feature) {
+                if (!ArrayUtils::has($feature, "ID")) {
+                    return $api->response([
+                        'success' => false,
+                        'message' => 'missing_field_in_feature',
+                        'field' => 'ID'
+                    ]);
+                }
+
+                $featureId = $feature["ID"];
+                if (!Validate::isInt($featureId)) {
+                    return $api->response([
+                        'success' => false,
+                        'message' => 'must_be_a_positive_integer',
+                        'field' => 'ID'
+                    ]);
+                }
+
+                array_push($newFeatures, $featureId);
+            }
+        }
+        
+        $insertValues = array();
+        foreach ($fields as $field) {
+            array_push($insertValues, Tools::sql_value($payload[$field]));
+        }
+
+        $insertQuery = "INSERT INTO Raum (" . implode(",", $fields) . ") VALUES (" . implode(",", $insertValues) . ");";
+
+        if (count($newFeatures) > 0) {
+            $newFeatures = array_map(fn($id) => "(@RaumId,$id)", $newFeatures);
+            $newFeatures = implode(",", $newFeatures);
+            $insertQuery = $insertQuery . "SET @RaumId = LAST_INSERT_ID(); INSERT INTO `Raum_Feature`(RaumID, FeatureID) VALUES $newFeatures;";
+        }
+
+        $db->executeS($insertQuery);
+
+        return $api->response([
+            'success' => true
+        ]);
+    }
+
+    /**
+     * Deletes the room using DELETE
+     */
+    public function deleteRoom($roomId) {
+        $api = $this->api;
+        $db = Db::getInstance();
+
+        if (!Validate::isInt($roomId)) {
+            return $api->response([
+                'success' => false,
+                'message' => 'id_must_be_integer'
+            ]);
+        }
+
+        $db->executeS("DELETE FROM Raum_Feature WHERE RaumID = $roomId; DELETE FROM Raum WHERE ID = $roomId");
+        
+        return $api->response([
+            'success' => true
+        ]);
     }
 }
 
