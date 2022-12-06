@@ -17,7 +17,25 @@ use BestShop\Tools;
 use BestShop\Validate;
 
 class Room extends Route {
+    private static $fields = array(
+        "Nummer", "Straße", "HausNr", "Ort", "PLZ", "Plaetze", "Sitzform"
+    );
 
+    public function newRoom() {
+        $api = $this->api;
+        $room = (object)[ ];
+
+        foreach (self::$fields as $field) {
+            $room->{$field} = "";
+        }
+        
+        $room->Features = array([]);
+
+        return $api->response([
+            'success' => true,
+            'room' => $room
+        ]);
+    }
     /**
      * Returns all rooms and their features using GET
      */
@@ -64,6 +82,10 @@ class Room extends Route {
     public function getRoom($roomId) {
         $api = $this->api;
         $db = Db::getInstance();
+
+        if ($roomId == "new") {
+            return self::newRoom();
+        }
 
         if (!Validate::isInt($roomId)) {
             return $api->response([
@@ -134,11 +156,9 @@ class Room extends Route {
         
         $payload = $api->request()->post();
         
-        $fields = array(
-            "Nummer", "Straße", "HausNr", "Ort", "PLZ", "Plaetze", "Sitzform"
-        );
+        
 
-        foreach ($fields as $field) {
+        foreach (self::$fields as $field) {
             if (!ArrayUtils::has($payload, $field)) {
                 return $api->response([
                     'success' => false,
@@ -196,7 +216,7 @@ class Room extends Route {
 
         $insertQuery = "UPDATE Raum SET ";
         $insertValues = array();
-        foreach ($fields as $field) {
+        foreach (self::$fields as $field) {
             $value = Tools::sql_value($payload[$field]);
             array_push($insertValues, "`$field`=$value");
         }
@@ -226,12 +246,8 @@ class Room extends Route {
         $db = Db::getInstance();
 
         $payload = $api->request()->post();
-        
-        $fields = array(
-            "Nummer", "Straße", "HausNr", "Ort", "PLZ", "Plaetze", "Sitzform"
-        );
 
-        foreach ($fields as $field) {
+        foreach (self::$fields as $field) {
             if (!ArrayUtils::has($payload, $field)) {
                 return $api->response([
                     'success' => false,
@@ -288,11 +304,11 @@ class Room extends Route {
         }
         
         $insertValues = array();
-        foreach ($fields as $field) {
+        foreach (self::$fields as $field) {
             array_push($insertValues, Tools::sql_value($payload[$field]));
         }
 
-        $insertQuery = "INSERT INTO Raum (" . implode(",", $fields) . ") VALUES (" . implode(",", $insertValues) . ");";
+        $insertQuery = "INSERT INTO Raum (" . implode(",", self::$fields) . ") VALUES (" . implode(",", $insertValues) . ");";
 
         if (count($newFeatures) > 0) {
             $newFeatures = array_map(fn($id) => "(@RaumId,$id)", $newFeatures);

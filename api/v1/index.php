@@ -85,6 +85,7 @@ $api->group('/rooms', function() use ($api) {
 	$api->post('/?', 		  '\BestShop\v1\Room:addRoom')->name('add_room');
 	$api->put('/:roomId?', 	  '\BestShop\v1\Room:updateRoom')->name('update_room');
 	$api->delete('/:roomId?', '\BestShop\v1\Room:deleteRoom')->name('delete_room');
+	$api->get('/new', 	      '\BestShop\v1\Room:newRoom')->name('new_room');
 });
 
 $api->group('/features', function() use ($api) {

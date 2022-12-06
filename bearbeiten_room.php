@@ -30,7 +30,13 @@
 		}
 </style> -->
 	<script>
-        let roomId = <?php echo $_GET["id"]; ?> //"Raum ID gemeint"
+        let roomId = 
+		<?php 
+			if (!isset($_GET["id"]))
+				echo 'undefined';
+			else
+				echo $_GET["id"]; 
+		?> //"Raum ID gemeint"
     </script>
 	</head>
 	<body class="d-flex flex-column h-100">
