@@ -29,7 +29,7 @@ class Room extends Route {
             $room->{$field} = "";
         }
         
-        $room->Features = array([]);
+        $room->Features = [];
 
         return $api->response([
             'success' => true,

@@ -35,7 +35,7 @@
 			if (!isset($_GET["id"]))
 				echo 'undefined';
 			else
-				echo $_GET["id"]; 
+				echo $_GET["id"];
 		?> //"Raum ID gemeint"
     </script>
 	</head>
