@@ -87,6 +87,14 @@ $api->group('/rooms', function() use ($api) {
 	$api->delete('/:roomId?', '\BestShop\v1\Room:deleteRoom')->name('delete_room');
 });
 
+$api->group('/features', function() use ($api) {
+	$api->get('/?', 		     '\BestShop\v1\Feature:getFeatures')->name('get_features');
+	$api->get('/:featureId?',    '\BestShop\v1\Feature:getFeature')->name('get_feature');
+	$api->post('/?', 		     '\BestShop\v1\Feature:addFeature')->name('add_feature');
+	$api->put('/:featureId?',    '\BestShop\v1\Feature:updateFeature')->name('update_feature');
+	$api->delete('/:featureId?', '\BestShop\v1\Feature:deleteFeature')->name('delete_feature');
+});
+
 // $api->group('/api', function () use ($api) {
 // 	$api->group('/v1', function () use ($api) {
 // 		/** Get all Products */
