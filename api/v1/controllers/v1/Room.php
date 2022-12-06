@@ -148,6 +148,10 @@ class Room extends Route {
             }
         }
 
+        if(strlen(trim(strval($payload["Plaetze"]))) == 0) {
+            $payload["Plaetze"] = NULL;
+        }
+
         if (!Validate::isNullOrUnsignedId($payload["Plaetze"])) {
             return $api->response([
                 'success' => false,
@@ -235,6 +239,10 @@ class Room extends Route {
                     'field' => $field
                 ]);
             }
+        }
+
+        if(strlen(trim(strval($payload["Plaetze"]))) == 0) {
+            $payload["Plaetze"] = NULL;
         }
 
         if (!Validate::isNullOrUnsignedId($payload["Plaetze"])) {
