@@ -7,8 +7,7 @@
 
         $query = 
             "SELECT 
-                ID, 
-                Name
+                *
             FROM 
                 Benutzer  
             WHERE 
