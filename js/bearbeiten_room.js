@@ -26,7 +26,7 @@ vueRoot = {
                 http_method = 'POST';
             }
             else {
-                url_room += roomId
+                url_room = roomId
             }
 
             console.log(url_room);
@@ -62,6 +62,7 @@ vueRoot = {
         else {
             url_room += roomId;
         }
+        
 
         console.log(url_room);
 
