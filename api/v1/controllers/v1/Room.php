@@ -210,7 +210,7 @@ class Room extends Route {
                     ]);
                 }
 
-                array_push($newFeatures, $featureId);
+                $newFeatures[$featureId] = null;
             }
         }
 
@@ -225,6 +225,7 @@ class Room extends Route {
         $insertQuery = $insertQuery . "DELETE FROM Raum_Feature WHERE RaumID=$roomId;";
 
         if (count($newFeatures) > 0) {
+            $newFeatures = array_keys($newFeatures);
             $newFeatures = array_map(fn($id) => "($roomId,$id)", $newFeatures);
             $newFeatures = implode(",", $newFeatures);
             $insertQuery = $insertQuery . "INSERT INTO `Raum_Feature`(RaumID, FeatureID) VALUES $newFeatures;";
@@ -299,7 +300,7 @@ class Room extends Route {
                     ]);
                 }
 
-                array_push($newFeatures, $featureId);
+                $newFeatures[$featureId] = null;
             }
         }
         
@@ -311,6 +312,7 @@ class Room extends Route {
         $insertQuery = "INSERT INTO Raum (" . implode(",", self::$fields) . ") VALUES (" . implode(",", $insertValues) . ");";
 
         if (count($newFeatures) > 0) {
+            $newFeatures = array_keys($newFeatures);
             $newFeatures = array_map(fn($id) => "(@RaumId,$id)", $newFeatures);
             $newFeatures = implode(",", $newFeatures);
             $insertQuery = $insertQuery . "SET @RaumId = LAST_INSERT_ID(); INSERT INTO `Raum_Feature`(RaumID, FeatureID) VALUES $newFeatures;";
