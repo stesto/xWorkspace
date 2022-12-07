@@ -33,6 +33,7 @@ var vueRoot = {
 
                 Cookies.set('user_id', result.ID);
                 Cookies.set('username', result.Name);
+                Cookies.set('user_role', result.Rolle);
                 
                 location.href = 'bueroreservierung.php'
 

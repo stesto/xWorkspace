@@ -130,4 +130,12 @@ class Tools {
         }
         return ucwords(Tools::strtolower($str));
     }
+
+    public static function sql_value($value) {
+        if ($value == NULL)
+            return "NULL";
+        $value = strval($value);
+        $value = str_replace("'", "''", $value);
+        return "'$value'";
+    }
 }

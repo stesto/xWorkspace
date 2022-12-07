@@ -87,7 +87,8 @@
 							</div>
 							<!--Registrierten Räume-->
 							<div class="material-shadow"> <!-- margin left hierrein-->
-								<h4>Alle hinzugefügten Räume</h4>
+								<h4>Alle hinzugefügten Räume</h4> <br>
+								<a :href="'bearbeiten_room.php?=new'">neuen Raum hinzufügen</a> <br>							
 								<input v-model="raumString" type="text" style="width: 100%" placeholder="Raum suchen">
 								<table style="width:120%">
 									<tr v-for="(room, idx) in roomsFiltered">

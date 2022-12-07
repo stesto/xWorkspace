@@ -30,7 +30,13 @@
 		}
 </style> -->
 	<script>
-        let roomId = <?php echo $_GET["id"]; ?> //"Raum ID gemeint"
+        let roomId = 
+		<?php 
+			if (!isset($_GET["id"]))
+				echo 'undefined';
+			else
+				echo $_GET["id"];
+		?> //"Raum ID gemeint"
     </script>
 	</head>
 	<body class="d-flex flex-column h-100">
@@ -94,32 +100,35 @@
 												<a v-on:click="addfeature(feature, id)" class="addfeature">Hinzufügen</a>
 											</li>
 										</Ul>
+										<div style="display: flex;flex;flex-direction: row-reverse;">
+											<button v-on:click="speicherRaum()" class="speicherRaum" style="text-align: right;">Speichern</button>
+										</div>
 								</div>
 									<div>
 										<h4>Raum Name ändern:<h4>
-										<input v-model="raum.Nummer" type="text" style="width: 30%" placeholder="Name ändern">
+										<input v-model="raum.Nummer" type="text" style="width: 30%" placeholder>
 									</div>
 										<div>
-											<h4>Adresse des Raums ändern</h4>
+											<h4>Standord des Raumes</h4>
 											<div>
 												<a>Neue Straße:</a>
-												<input v-model="raum.Straße" type="text" style="width: 42%" placeholder="Straße ändern">
+												<input v-model="raum.Straße" type="text" style="width: 42%" placeholder>
 											</div>
 											<div>
 												<a>Neue Hausnummer:</a>
-												<input v-model="raum.HausNr" type="text" style="width: 12%" placeholder="Haus Nr. ändern">
+												<input v-model="raum.HausNr" type="text" style="width: 15%" placeholder>
 											</div>
 											<div>
 												<a>Ort ändern:</a>
-												<input v-model="raum.Ort" type="text" style="width: 20%" placeholder="Ort ändern">
+												<input v-model="raum.Ort" type="text" style="width: 20%" placeholder>
 											</div>
 											<div>
 												<a>PLZ ändern:</a>
-												<input v-model="raum.PLZ" type="text" style="width: 20%" placeholder="PLZ ändern">
+												<input v-model="raum.PLZ" type="text" style="width: 20%" placeholder>
 											</div>
 											<div>
 												<a>Platzanzahl ändern</a>
-												<input v-model="raum.Plaetze" type="text" style="width: 40%" placeholder="Plaetze ändern">
+												<input v-model.number="raum.Plaetze" type="text" style="width: 40%" placeholder>
 											</div>
 										</div>
 								

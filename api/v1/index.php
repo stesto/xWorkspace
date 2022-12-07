@@ -80,10 +80,20 @@ $params = $api->request->get();
 $requestPayload = $api->request->post();
 
 $api->group('/rooms', function() use ($api) {
-	$api->get('/?', 		'\BestShop\v1\Room:getRooms')->name('get_rooms');
-	$api->get('/:roomId?', 	'\BestShop\v1\Room:getRoom')->name('get_room');
-	$api->post('/?', 		'\BestShop\v1\Room:addRoom')->name('add_room');
-	$api->put('/:roomId?', 	'\BestShop\v1\Room:updateRoom')->name('update_room');
+	$api->get('/?', 		  '\BestShop\v1\Room:getRooms')->name('get_rooms');
+	$api->get('/:roomId?', 	  '\BestShop\v1\Room:getRoom')->name('get_room');
+	$api->post('/?', 		  '\BestShop\v1\Room:addRoom')->name('add_room');
+	$api->put('/:roomId?', 	  '\BestShop\v1\Room:updateRoom')->name('update_room');
+	$api->delete('/:roomId?', '\BestShop\v1\Room:deleteRoom')->name('delete_room');
+	$api->get('/new', 	      '\BestShop\v1\Room:newRoom')->name('new_room');
+});
+
+$api->group('/features', function() use ($api) {
+	$api->get('/?', 		     '\BestShop\v1\Feature:getFeatures')->name('get_features');
+	$api->get('/:featureId?',    '\BestShop\v1\Feature:getFeature')->name('get_feature');
+	$api->post('/?', 		     '\BestShop\v1\Feature:addFeature')->name('add_feature');
+	$api->put('/:featureId?',    '\BestShop\v1\Feature:updateFeature')->name('update_feature');
+	$api->delete('/:featureId?', '\BestShop\v1\Feature:deleteFeature')->name('delete_feature');
 });
 
 // $api->group('/api', function () use ($api) {
