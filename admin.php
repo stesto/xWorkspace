@@ -10,7 +10,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Demo</title>
+		<title>Admin Seite</title>
+		<link rel="icon" type="image/x-icon" href="media/favicon.ico">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 		<link href="css/bueroreservierung.css" rel="stylesheet">
@@ -36,8 +37,8 @@
 			<nav class="navbar navbar-expand-md sticky-top bg-dark navbar-dark">
 				<div class="container-md">
 					<a class="navbar-brand" href="#">
-						<img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-						<b>xWorkspace</b>
+						<img src="media/xWorkspace Banner.svg" alt="" width="200" class="d-inline-block align-text-top">
+
 					</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menubar">
 						<span class="navbar-toggler-icon"></span>

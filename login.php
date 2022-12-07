@@ -6,13 +6,17 @@
 ?>
 
 <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/loading.css"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
+    <html>
+        <head>
+        <title>xWorkspace Login</title>
+        <link rel="icon" type="image/x-icon" href="media/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/loading.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
+
+
     <style>
         * {
             font-family: 'Poppins', sans-serif;
@@ -52,12 +56,17 @@
         #header {
             font-family: 'Poppins', sans-serif;
             font-weight: 800;
-            font-size: 64pt;
+            font-size: 48pt;
             color: white;
             text-shadow: 5px 5px rgb(0 0 0 / 30%);
             margin: 0 0 20px 0;
             text-align: center;
         }
+
+        #banner {
+
+            text-align: center;
+                        }
 
         ::placeholder {
             font-family: 'Poppins', sans-serif;
@@ -113,10 +122,14 @@
             visibility: hidden;
         }
     </style>
+
 </head>
+
     <body>
         <div class="login-form" id="vue-body">
-                <h1 id="header">xWorkspace</h1>
+
+                <h1 id="banner"> <img src="media/xWorkspace Banner.svg" alt="" width="500"></h1>
+                <h6 id="header">Herzlich Willkommen!</h6>
 				<div class="container">
 					<!-- <label for="username"><b>Benutzername</b></label> -->
 					<input type="text" placeholder="Name" name="username" v-model="username" v-on:keydown.enter="login">

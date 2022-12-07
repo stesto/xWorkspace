@@ -27,7 +27,7 @@ font-weight: 500;
 position: relative;
 }
 .container .title::before{
-content: ""
+content: "";
 position: absolute;
 left: 0;
 bottom: 0;
