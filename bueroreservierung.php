@@ -34,8 +34,6 @@
 							<li class="nav-item">
 								<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>
 							</li>
-								<a href="admin.php" class="nav-link active">Admin-Page</a>
-							</li>
 						</ul>
 						<div v-cloak  class="navbar-nav dropdown">
 							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" style="display: flex; align-items: center;">
@@ -44,6 +42,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-item" style="user-select: none; cursor: pointer;" v-on:click="logout">Abmelden</li>
+                                <li class="dropdown-item-admin" style="user-select: none; cursor: pointer; background: linear-gradient(135deg, #71b7e6, #9b59b6);"> <a href="admin.php" class="nav-link active">Admin-Page</a>
 							</ul>
 						</div>
 					</div>

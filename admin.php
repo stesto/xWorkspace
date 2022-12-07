@@ -46,8 +46,7 @@
 						<ul class="navbar-nav">
 							<li class="nav-item">
 								<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>
-							</li>
-								<a href="admin.php" class="nav-link active">Admin-Page</a>
+
 							</li>
 							
 						</ul>
