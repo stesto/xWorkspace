@@ -16,68 +16,68 @@ use BestShop\Util\ArrayUtils;
 use BestShop\Tools;
 use BestShop\Validate;
 
-class Feature extends Route {
+class User extends Route {
     private static $fields = array(
-        "Name"
+        "Name", "Password", "Nachname", "Email", "Rolle"
     );
 
-    public function getFeatures() {
+    public function getUsers() {
         $api = $this->api;
         $db = Db::getInstance();
 
-        $featuresSql = 
+        $usersSql = 
             "SELECT
                 *
             FROM
-                Feature";
-        $features = $db->executeS($featuresSql);
+                Benutzer";
+        $users = $db->executeS($usersSql);
 
         return $api->response([
             'success' => true,
-            'features' => $features
+            'users' => $users
         ]);
     }
 
-    public function getFeature($featureId) {
+    public function getUser($userId) {
         $api = $this->api;
         $db = Db::getInstance();
 
-        if (!Validate::isInt($featureId)) {
+        if (!Validate::isInt($userId)) {
             return $api->response([
                 'success' => false,
                 'message' => 'id_must_be_integer'
             ]);
         }
         
-        $featuresSql = 
+        $usersSql = 
             "SELECT
                 *
             FROM
-                Feature
+                Benutzer
             WHERE
-                ID = $featureId";
-        $features = $db->executeS($featuresSql);
+                ID = $userId";
+        $users = $db->executeS($usersSql);
 
-        if (count($features) == 0) {
+        if (count($users) == 0) {
             return $api->response([
                 'success' => false,
                 'message' => 'id_not_found'
             ]);
         }
 
-        $feature = $features[0];
+        $user = $users[0];
 
         return $api->response([
             'success' => true,
-            'feature' => $feature
+            'user' => $user
         ]);
     }
 
-    public function updateFeature($featureId) {
+    public function updateUser($userId) {
         $api = $this->api;
         $db = Db::getInstance();
 
-        if (!Validate::isInt($featureId)) {
+        if (!Validate::isInt($userId)) {
             return $api->response([
                 'success' => false,
                 'message' => 'id_must_be_integer'
@@ -96,24 +96,24 @@ class Feature extends Route {
             }
         }
 
-        $insertQuery = "UPDATE Feature SET ";
+        $insertQuery = "UPDATE Benutzer SET ";
         $insertValues = array();
         foreach (self::$fields as $field) {
             $value = Tools::sql_value($payload[$field]);
             array_push($insertValues, "`$field`=$value");
         }
 
-        $insertQuery = $insertQuery . implode(",", $insertValues) . " WHERE ID=$featureId;";
+        $insertQuery = $insertQuery . implode(",", $insertValues) . " WHERE ID=$userId;";
 
         $db->executeS($insertQuery);
 
         return $api->response([
             'success' => true,
-            'feature' => $payload
+            'user' => $payload
         ]);
     }
 
-    public function addFeature() {
+    public function addUser() {
         $api = $this->api;
         $db = Db::getInstance();
         
@@ -134,7 +134,7 @@ class Feature extends Route {
             array_push($insertValues, Tools::sql_value($payload[$field]));
         }
 
-        $insertQuery = "INSERT INTO Feature (" . implode(",", self::$fields) . ") VALUES (" . implode(",", $insertValues) . ");";
+        $insertQuery = "INSERT INTO Benutzer (" . implode(",", self::$fields) . ") VALUES (" . implode(",", $insertValues) . ");";
 
         $db->executeS($insertQuery);
 
@@ -144,23 +144,21 @@ class Feature extends Route {
         ]);
     }
 
-    public function deleteFeature($featureId) {
+    public function deleteUser($userId) {
         $api = $this->api;
         $db = Db::getInstance();
 
-        if (!Validate::isInt($featureId)) {
+        if (!Validate::isInt($userId)) {
             return $api->response([
                 'success' => false,
                 'message' => 'id_must_be_integer'
             ]);
         }
 
-        $db->executeS("DELETE FROM Feature WHERE ID = $featureId");
+        $db->executeS("DELETE FROM Benutzer WHERE ID = $userId");
         
         return $api->response([
             'success' => true
         ]);
     }
 }
-
-

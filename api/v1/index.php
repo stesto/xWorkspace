@@ -96,6 +96,14 @@ $api->group('/features', function() use ($api) {
 	$api->delete('/:featureId?', '\BestShop\v1\Feature:deleteFeature')->name('delete_feature');
 });
 
+$api->group('/users', function() use ($api) {
+	$api->get('/?', 		  '\BestShop\v1\User:getUsers')->name('get_users');
+	$api->get('/:userId?',    '\BestShop\v1\User:getUser')->name('get_user');
+	$api->post('/?', 		  '\BestShop\v1\User:addUser')->name('add_user');
+	$api->put('/:userId?',    '\BestShop\v1\User:updateUser')->name('update_user');
+	$api->delete('/:userId?', '\BestShop\v1\User:deleteUser')->name('delete_user');
+});
+
 // $api->group('/api', function () use ($api) {
 // 	$api->group('/v1', function () use ($api) {
 // 		/** Get all Products */
