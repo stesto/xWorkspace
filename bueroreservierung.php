@@ -32,7 +32,16 @@
 					<div class="collapse navbar-collapse justify-content-between" id="menubar">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>
+
+							<?php if ($_COOKIE["user_role"] == 'admin'){
+                                    echo '<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>';
+                                    echo '<a href="admin.php" class="nav-link active">Admin Page</a>'; 
+                                    }
+                                    else {
+                                        echo '<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>';
+                                    }
+                                    ?>
+	
 							</li>
 						</ul>
 						<div v-cloak  class="navbar-nav dropdown">
@@ -42,7 +51,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown-item" style="user-select: none; cursor: pointer;" v-on:click="logout">Abmelden</li>
-                                <li class="dropdown-item-admin" style="user-select: none; cursor: pointer; background: linear-gradient(135deg, #71b7e6, #9b59b6);"> <a href="admin.php" class="nav-link active">Admin-Page</a>
+                                <!-- <li class="dropdown-item-admin" style="user-select: none; cursor: pointer; background: linear-gradient(135deg, #71b7e6, #9b59b6);"> <a href="admin.php" class="nav-link active">Admin-Page</a> -->
 							</ul>
 						</div>
 					</div>
