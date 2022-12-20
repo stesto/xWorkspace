@@ -58,9 +58,29 @@ vueRoot = {
             console.log(id); //Testausgabe bro
         },
         removeRoom(id){
-            this.rooms.splice(id,1);
+           // this.rooms.splice(id,1);
+           
             console.log(id); // Testausgabe ob Click funktioniert --> ja funkt.
+           // $.post("raum_loeschen.php",{deleteid:id}, function(data){}); // Test
+
+                // ID übergabe an Loeschen_Raum.php
+                $.ajax({
+                    url: 'raum_loeschen.php',
+                    dataType: '',
+                    type: 'POST',
+                    data: {id:id}, // (vorher: this.raum ::Die JSON.stringify()Methode wandelt einen JavaScript-Wert in eine JSON-Zeichenfolge um und ersetzt optional Werte
+                }).done(function(data){
+                    location.href = 'admin.php'
+                    console.log(data); // data gibt an was die API zurückgibt
+                }).fail(function (msg) {
+                    console.log('FAIL');
+                }).always(function (msg) {
+                    console.log('Always');   
+                })
+
+
         }
+        
     },
     computed:   {
         usersFiltered() {

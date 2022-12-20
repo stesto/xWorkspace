@@ -3,6 +3,7 @@
 	// 	header("Location: login.php");
 	// 	die();
 	// }
+	
 ?>
 
 <!DOCTYPE html>
@@ -77,27 +78,60 @@
 											{{ index + 1 }}. {{ user.name }}
 										</td>
 										<td>
-											<a :href="'/user/edit.php?id=' + user.id">Bearbeiten</a>
-											<span>/</span>
-											<span v-on:click="removeUser(index)" class="removeUser">Löschen</span>
+											<a :href="'/user/edit.php?id=' + user.id" class="btn btn-secondary btn-sm">Bearbeiten</a>
+											
+											<span v-on:click="removeUser(index)" class="btn btn-danger btn-sm">Löschen</span>
 										</td>
 									</tr>
 								</table>
 							</div>
 							<!--Registrierten Räume-->
 							<div class="material-shadow"> <!-- margin left hierrein-->
-								<h4>Alle hinzugefügten Räume</h4> <br>
-								<a :href="'bearbeiten_room.php?=new'">neuen Raum hinzufügen</a> <br>							
+							
+								<h4>Alle hinzugefügten Räume</h4> 
+								
+								<a :href="'bearbeiten_room.php?=new'"class="btn btn-primary btn-sm ">neuen Raum hinzufügen</a>	
+
+											
 								<input v-model="raumString" type="text" style="width: 100%" placeholder="Raum suchen">
-								<table style="width:120%">
+								<table style="width:100%">
 									<tr v-for="(room, idx) in roomsFiltered">
 										<td>
 											{{ idx + 1 }}. {{ room.Nummer }}
 										</td>
 										<td>
-											<a :href="'bearbeiten_room.php?id=' + room.ID">Bearbeiten</a>
-											<span>/</span>
-											<span v-on:click="removeRoom(idx)" class="removeRoom">Löschen</span>
+											
+
+											<a :href="'bearbeiten_room.php?id=' + room.ID"	class="btn btn-secondary btn-sm">Bearbeiten</a>
+											
+											<span v-on:click="removeRoom(room.ID)" class="btn btn-danger btn-sm">Löschen</span>
+
+							
+											<table class="table">
+
+
+											
+											<!-- <span v-on:click="Loesch_Raum()>Löschen</span>
+
+											
+  
+
+											<script>
+												function Loesch_Raum() {
+													
+													let text;
+ 													if (confirm("Achtung! \n Wenn Sie Raum loeschen, werden auch Reservierung und Raum Feature mit gelöscht !!") == true) {
+														removeRoom(room.ID) class="removeRoom";
+														text = "You pressed OK!";
+  													} else {
+    												text = "You canceled!";
+  													}
+  												
+												}
+											</script> -->
+											<!-- <button class = "btn btn-danger"> <a href="raum_loeschen.php? 
+											deleteid = 'idx' "class="text-light"> Löschen</a>
+											</button> -->
 										</td>
 									</tr>
 								</table>
