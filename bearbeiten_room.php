@@ -88,7 +88,7 @@
 									<ul>
 										<li v-for="(feature, idx) in raum.Features">
 											{{feature.Name}}
-											<a v-on:click="removefeature(idx)" class="removefeature">Löschen</a>
+											<a v-on:click="removefeature(feature, idx)" class="removefeature">Löschen</a>
 										</li>
 										
 									</ul>
