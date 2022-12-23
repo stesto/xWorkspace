@@ -7,9 +7,10 @@ vueRoot = {
         features:[]
     },
     methods: {
-        removefeature(idx){
+        removefeature(obj, idx){
+            this.features.push(obj)
             this.raum.Features.splice(idx, 1);
-            console.log(idx);
+            console.log(obj);
         },
         addfeature(obj, id){
             this.raum.Features.push(obj);
