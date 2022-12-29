@@ -1,8 +1,7 @@
 <?php
-	// if (!isset($_COOKIE["username"]) || !isset($_COOKIE["user_id"])) {
-	// 	header("Location: login.php");
-	// 	die();
-	// }
+	include_once('_helpers.php');
+	ensureLogin();
+	ensureAdmin();
 ?>
 
 <!DOCTYPE html>
@@ -15,20 +14,6 @@
 		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 		<link href="css/bueroreservierung.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/theme3.css"/>
-<!--<style>
-		article {
-  			float: left;
-  			padding: 30px;
-			width: 45%;
-  			background-color: #ffffff;
-  			height: 450px;
-		}
-		section{
-			content:"";
-			display: table;
-			clear: both;
-		}
-</style> -->
 	<script>
         let roomId = 
 		<?php 
@@ -40,55 +25,25 @@
     </script>
 	</head>
 	<body class="d-flex flex-column h-100">
-		<div id="vue-body">
+		<div >
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-md sticky-top bg-dark navbar-dark">
-				<div class="container-md">
-					<a class="navbar-brand" href="#">
-						<img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-						<b>xWorkspace</b>
-					</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menubar">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse justify-content-between" id="menubar">
-						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a href="admin.php" class="nav-link active">Admin Page</a>
-							</li>
-							<li>
-								<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>
-							</li>
-							
-						</ul>
-						<!-- <div v-cloak  class="navbar-nav dropdown">
-							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" style="display: flex; align-items: center;">
-								<span class="material-symbols-outlined">person</span>
-								<span class="mx-1">{{ username }}</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-item" style="user-select: none; cursor: pointer;" v-on:click="logout">Abmelden</li>
-							</ul>
-						</div> -->
-					</div>
-				</div>
-			</nav>
+			<?php include('views/header.php'); ?>
 			<!-- main ---------------------------------------------------------------------------->
-			<main v-cloak class="my-5">
+			<main v-cloak id="vue-body" class="my-5">
 				<div class="container-md">
 					<div class="row">
 						<div style="display: flex">
 							<!--Raum Bearbeiten-->
-							<div class="material-shadow" style="margin-bottom: 10px">
+							<div class="material-shadow" style="margin-bottom: 30px">
 								<h4>
-									<a>Raum bearbeiten:</a>
+									<a>Raum bearbeiten</a>
 								</h4>
 								<div>
-									<h4>Vorhandene Feauters:</h4>
+			
 									<ul>
 										<li v-for="(feature, idx) in raum.Features">
 											{{feature.Name}}
-											<a v-on:click="removefeature(feature, idx)" class="removefeature">Löschen</a>
+											<a v-on:click="removefeature(idx)" class="btn btn-danger btn-sm">Löschen</a>
 										</li>
 										
 									</ul>
@@ -97,38 +52,38 @@
 										<ul>
 											<li v-for="(feature, id) in features">
 												{{feature.Name}}
-												<a v-on:click="addfeature(feature, id)" class="addfeature">Hinzufügen</a>
+												<a v-on:click="addfeature(feature, id)" class="btn">Hinzufügen</a>
 											</li>
 										</Ul>
-										<div style="display: flex;flex;flex-direction: row-reverse;">
-											<button v-on:click="speicherRaum()" class="speicherRaum" style="text-align: right;">Speichern</button>
+										<div style="display: flex;flex-direction: row-reverse;">
+											<button v-on:click="speicherRaum()" class="btn btn-success btn-sm" style="text-align: right;">Speichern</button>
 										</div>
 								</div>
 									<div>
 										<h4>Raum Name ändern:<h4>
-										<input v-model="raum.Nummer" type="text" style="width: 30%" placeholder>
+										<input v-model="raum.Nummer" type="text" style="width: 100%" placeholder>
 									</div>
 										<div>
 											<h4>Standord des Raumes</h4>
 											<div>
 												<a>Neue Straße:</a>
-												<input v-model="raum.Straße" type="text" style="width: 42%" placeholder>
+												<input v-model="raum.Straße" type="text" style="width: 100%" placeholder>
 											</div>
 											<div>
 												<a>Neue Hausnummer:</a>
-												<input v-model="raum.HausNr" type="text" style="width: 15%" placeholder>
+												<input v-model="raum.HausNr" type="text" style="width: 100%" placeholder>
 											</div>
 											<div>
 												<a>Ort ändern:</a>
-												<input v-model="raum.Ort" type="text" style="width: 20%" placeholder>
+												<input v-model="raum.Ort" type="text" style="width: 100%" placeholder>
 											</div>
 											<div>
 												<a>PLZ ändern:</a>
-												<input v-model="raum.PLZ" type="text" style="width: 20%" placeholder>
+												<input v-model="raum.PLZ" type="text" style="width: 100%" placeholder>
 											</div>
 											<div>
 												<a>Platzanzahl ändern</a>
-												<input v-model.number="raum.Plaetze" type="text" style="width: 40%" placeholder>
+												<input v-model.number="raum.Plaetze" type="text" style="width: 100%" placeholder>
 											</div>
 										</div>
 								

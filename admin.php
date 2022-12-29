@@ -1,9 +1,7 @@
 <?php
-	// if (!isset($_COOKIE["username"]) || !isset($_COOKIE["user_id"])) {
-	// 	header("Location: login.php");
-	// 	die();
-	// }
-	
+	include_once('_helpers.php');
+	ensureLogin();
+	ensureAdmin();
 ?>
 
 <!DOCTYPE html>
@@ -17,82 +15,43 @@
 		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 		<link href="css/bueroreservierung.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/theme3.css"/>
-<!--<style>
-		article {
-  			float: left;
-  			padding: 30px;
-			width: 45%;
-  			background-color: #ffffff;
-  			height: 450px;
-		}
-		section{
-			content:"";
-			display: table;
-			clear: both;
-		}
-</style> -->
 	</head>
 	<body class="d-flex flex-column h-100">
-		<div id="vue-body">
+		<div>
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-md sticky-top bg-dark navbar-dark">
-				<div class="container-md">
-					<a class="navbar-brand" href="#">
-						<img src="media/xWorkspace Banner.svg" alt="" width="200" class="d-inline-block align-text-top">
-					</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menubar">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse justify-content-between" id="menubar">
-						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>
-
-							</li>
-							
-						</ul>
-						<!-- <div v-cloak  class="navbar-nav dropdown">
-							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" style="display: flex; align-items: center;">
-								<span class="material-symbols-outlined">person</span>
-								<span class="mx-1">{{ username }}</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-item" style="user-select: none; cursor: pointer;" v-on:click="logout">Abmelden</li>
-							</ul>
-						</div> -->
-					</div>
-				</div>
-			</nav>
+			<?php include('views/header.php'); ?>
 			<!-- main -->
-			<main v-cloak  class="my-5">
+			<main v-cloak id="vue-body" class="my-5">
 				<div class="container-md">
 					<div class="row">
 						<div style="display: flex">
 							<!--Registrierten Nutzer-->
 							<div class="material-shadow">
 								<h4>Alle registrierten Nutzer</h4>
+								
+								<a :href="'benutzer_neu.php?=new'" class="btn btn-primary btn-sm">Benutzer hinzufügen</a>
+								
 								<input v-model="searchString" type="text" style="width: 100%" placeholder="Nutzer suchen">
-								<table>
+								<table style="width:100%">
 									<tr v-for="(user, index) in usersFiltered">
 										<td>
-											{{ index + 1 }}. {{ user.name }}
+											{{ index + 1 }}. {{ user.Name }}
+										
 										</td>
 										<td>
-											<a :href="'/user/edit.php?id=' + user.id" class="btn btn-secondary btn-sm">Bearbeiten</a>
-											
-											<span v-on:click="removeUser(index)" class="btn btn-danger btn-sm">Löschen</span>
+											<a :href="'benutzer_update.php?id=' + user.ID" class="btn btn-secondary btn-sm">Bearbeiten</a>
+											<span v-on:click="removeUser(user)" class="btn btn-danger btn-sm">Löschen</span>
 										</td>
 									</tr>
 								</table>
 							</div>
 							<!--Registrierten Räume-->
-							<div class="material-shadow"> <!-- margin left hierrein-->
+							<div class="material-shadow" style="margin-left: 20px;">
 							
 								<h4>Alle hinzugefügten Räume</h4> 
 								
-								<a :href="'bearbeiten_room.php?=new'"class="btn btn-primary btn-sm ">neuen Raum hinzufügen</a>	
+								<a :href="'bearbeiten_room.php?=new'"class="btn btn-primary btn-sm ">Raum hinzufügen</a>	
 
-											
 								<input v-model="raumString" type="text" style="width: 100%" placeholder="Raum suchen">
 								<table style="width:100%">
 									<tr v-for="(room, idx) in roomsFiltered">
@@ -100,38 +59,8 @@
 											{{ idx + 1 }}. {{ room.Nummer }}
 										</td>
 										<td>
-											
-
 											<a :href="'bearbeiten_room.php?id=' + room.ID"	class="btn btn-secondary btn-sm">Bearbeiten</a>
-											
-											<span v-on:click="removeRoom(room.ID)" class="btn btn-danger btn-sm">Löschen</span>
-
-							
-											<table class="table">
-
-
-											
-											<!-- <span v-on:click="Loesch_Raum()>Löschen</span>
-
-											
-  
-
-											<script>
-												function Loesch_Raum() {
-													
-													let text;
- 													if (confirm("Achtung! \n Wenn Sie Raum loeschen, werden auch Reservierung und Raum Feature mit gelöscht !!") == true) {
-														removeRoom(room.ID) class="removeRoom";
-														text = "You pressed OK!";
-  													} else {
-    												text = "You canceled!";
-  													}
-  												
-												}
-											</script> -->
-											<!-- <button class = "btn btn-danger"> <a href="raum_loeschen.php? 
-											deleteid = 'idx' "class="text-light"> Löschen</a>
-											</button> -->
+											<span v-on:click="removeRoom(room)" class="btn btn-danger btn-sm">Löschen</span>
 										</td>
 									</tr>
 								</table>

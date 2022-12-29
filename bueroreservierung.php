@@ -1,8 +1,6 @@
 <?php
-	if (!isset($_COOKIE["username"]) || !isset($_COOKIE["user_id"])) {
-		header("Location: login.php");
-		die();
-	}
+	include_once('_helpers.php');
+	ensureLogin();
 ?>
 
 <!DOCTYPE html>
@@ -18,47 +16,11 @@
 		<link rel="stylesheet" href="css/theme3.css"/>
 	</head>
 	<body class="d-flex flex-column h-100">
-		<div id="vue-body">
+		<div>
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-md sticky-top bg-dark navbar-dark">
-				<div class="container-md">
-					<a class="navbar-brand" href="#">
-						<img src="media/xWorkspace Banner.svg" alt="" width="200" class="d-inline-block align-text-top">
-
-					</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menubar">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse justify-content-between" id="menubar">
-						<ul class="navbar-nav">
-							<li class="nav-item">
-
-							<?php if ($_COOKIE["user_role"] == 'admin'){
-                                    echo '<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>';
-                                    echo '<a href="admin.php" class="nav-link active">Admin Page</a>'; 
-                                    }
-                                    else {
-                                        echo '<a href="bueroreservierung.php" class="nav-link active">Büroreservierung</a>';
-                                    }
-                                    ?>
-	
-							</li>
-						</ul>
-						<div v-cloak  class="navbar-nav dropdown">
-							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" style="display: flex; align-items: center;">
-								<span class="material-symbols-outlined">person</span>
-								<span class="mx-1">{{ username }}</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-item" style="user-select: none; cursor: pointer;" v-on:click="logout">Abmelden</li>
-                                <!-- <li class="dropdown-item-admin" style="user-select: none; cursor: pointer; background: linear-gradient(135deg, #71b7e6, #9b59b6);"> <a href="admin.php" class="nav-link active">Admin-Page</a> -->
-							</ul>
-						</div>
-					</div>
-				</div>
-			</nav>
+			<?php include('views/header.php'); ?>
 			<!-- main -->
-			<main v-cloak  class="my-5">
+			<main v-cloak id="vue-body" class="my-5">
 				<div class="container-md">
 					<div class="row">
 						<div class="col-md-7 mb-4">
