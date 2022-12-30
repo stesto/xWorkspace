@@ -57,8 +57,6 @@ if (isset ($_POST ['submit'])){
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>xWorkspace Admin Seite</title>
@@ -68,7 +66,6 @@ if (isset ($_POST ['submit'])){
 		<link href="css/bueroreservierung.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/theme3.css"/>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
-	</head>
   </head>
   
   <body>
