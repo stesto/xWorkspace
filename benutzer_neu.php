@@ -101,10 +101,13 @@ if (isset ($_POST ['submit'])){
       
       <div class="mb-3">
 
-        <label >Rolle</label>
-        <input type="text" class="form-control" 
-        placeholder="Rolle eingeben" 
-        name="Rolle"autocomplete="off" >
+        <label >Rolle</label> <br>
+        <input type="checkbox"  id="admin" value="admin"
+        name="Rolle" >
+        <label for="admin"> Administrator/in </label><br>
+        <input type="checkbox"  id="user" value="user"
+                name="Rolle" >
+                <label for="user"> Benutzer/in </label><br>
 
       </div>
       
