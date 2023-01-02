@@ -16,6 +16,9 @@ vueRoot = {
             this.getDbData('users')
         },
         removeRoom(room) {
+            if (confirm("Achtung! Sind Sie sich sicher, dass der Raum GELÖSCHT werden soll?") == false)
+                return;
+
             this.deleteDbEntry('rooms', room.ID)
                 .then((data) => {
                     if (data.success)
@@ -23,6 +26,9 @@ vueRoot = {
                 })
         },
         removeUser(user) {
+            if (confirm("Achtung! Sind Sie sich sicher, dass der Benutzer GELÖSCHT werden soll?") == false)
+                return;
+
             this.deleteDbEntry('users', user.ID)
                 .then((data) => {
                     if (data.success)
@@ -60,7 +66,7 @@ vueRoot = {
         },
 
         /**
-         * Filtert die angebene Liste mithilfe eines Suchtextes
+         * Filtert die angegebene Liste mithilfe eines Suchtextes.
          * @param {array} list Array mit allen Werten
          * @param {string} searchProperty Name der Variable, in der gesucht werden soll
          * @param {string} query Suchtext
