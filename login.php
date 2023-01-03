@@ -11,7 +11,7 @@
         <title>xWorkspace Login</title>
         <link re l="icon" type="image/x-icon" href="media/favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style_login_neu.css"/>
+        <link rel="stylesheet" href="style_login.css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
