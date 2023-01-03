@@ -112,7 +112,7 @@ if (isset ($_POST ['submit'])){
       </div>
       
 
-      <button type="submit" class="btn btn-primary"
+      <button type="submit" class="btn btn-success btn-sm"
       name ="submit">Speichern</button>
     </form>
 
