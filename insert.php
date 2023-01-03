@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
                 $stmt = $conn->prepare($Insert);
                 $stmt->bind_param("ssss",$vorname,$nachname, $password, $email);
                 if ($stmt->execute()) {
-                    echo "New record inserted sucessfully.";
+                    header("Location: login.php");
                 }
                 else {
                     echo $stmt->error;

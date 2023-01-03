@@ -35,9 +35,10 @@
             <input type="password" placeholder="Bestätige dein Passwort" required>
           </div>
         </div>
-
+      
         <div class="button">
           <input type="submit" name="submit" value="Registrieren" onklick="xws/bueroreservierung.php='Link'">
+          
         </div>
       </form>
     </div>
