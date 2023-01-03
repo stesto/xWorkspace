@@ -37,7 +37,7 @@
         </div>
 
         <div class="button">
-          <input type="submit" name="submit" value="Registrieren">
+          <input type="submit" name="submit" value="Registrieren" onklick="xws/bueroreservierung.php='Link'">
         </div>
       </form>
     </div>
