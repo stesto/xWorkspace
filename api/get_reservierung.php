@@ -14,9 +14,12 @@
         $query = $query . " WHERE BenutzerID = '$benutzerId'";
     }
 
-    // TODO: Fehler wenn null Ergebnisse
-
     $reservations = db::getInstance()->query_to_array($query);
+
+    if (count($reservations) == 0) {
+        echo "[]";
+        die;
+    }
 
     $roomIds = array_map(function($reserv) { return $reserv["RaumID"]; }, $reservations);
     $roomIds = array_unique($roomIds);
