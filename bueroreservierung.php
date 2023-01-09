@@ -33,7 +33,7 @@
 									</div>
 								</div>
 							</div>
-							<div v-show="selectedTab === reservierungTabs[0]" class="container" style="display: flex; flex-direction: column; align-items: center;">
+							<div v-show="selectedTab === reservierungTabs[0]" class="container" style="display: flex; flex-direction: column; align-items: center; user-select: none">
 								<div id="caleandar"></div>
 								<a href="#" style="color:black" @click="drawCalendar">Heute</a>
 							</div>
