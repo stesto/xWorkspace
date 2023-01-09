@@ -33,8 +33,9 @@
 									</div>
 								</div>
 							</div>
-							<div v-show="selectedTab === reservierungTabs[0]" class="container">
+							<div v-show="selectedTab === reservierungTabs[0]" class="container" style="display: flex; flex-direction: column; align-items: center;">
 								<div id="caleandar"></div>
+								<a href="#" style="color:black" @click="drawCalendar">Heute</a>
 							</div>
 							<div class="material-shadow" v-show="selectedTab === reservierungTabs[1]" >
 								<div>

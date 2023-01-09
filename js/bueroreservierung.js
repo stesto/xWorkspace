@@ -88,33 +88,37 @@ var vueRoot = {
             });
         },
         getReservierungen() {
-            $.get('api/get_reservierung.php', {
-                benutzerId: this.user_id
-            })
-            .done(function(data) {
-                var data = JSON.parse(data);
-                
-                var events = [];
-                reservations.splice(0);
+            fetch('api/get_reservierung.php?benutzerId=' + this.user_id)
+                .then((resp) => resp.json())
+                .then((data) => {
+                    reservations.splice(0);
 
-                for (var room of data) {
-                    reservations.push(room);
-                    var date = new Date(room.Datum);
-                    events.push({
-                        Date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-                        Title: room.Nummer,
-                        Link: '#'
-                      });
-                }
+                    for (let room of data) {
+                        reservations.push(room);
+                    }
+
+                    this.drawCalendar();
+                });
+        },
+        drawCalendar() {
+            let events = [];
+            for (let res of reservations) {
+                let date = new Date(res.Datum);
+                events.push({
+                    Date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+                    Title: res.Nummer,
+                    Link: '#'
+                });
+            }
                 
-                var settings = {
-                    DayClick: onDateClicked
-                };
-                
-                var element = document.getElementById('caleandar');
-                element.innerHTML = '';
-                caleandar(element, events, settings);
-            });
+            var settings = {
+                DayClick: onDateClicked
+            };
+            
+            let element = document.getElementById('caleandar');
+            element.innerHTML = '';
+            element.className = '';
+            caleandar(element, events, settings);
         },
         cancel(reservierung) {
             reservierung.deleting = true;
