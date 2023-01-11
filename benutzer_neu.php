@@ -101,7 +101,7 @@ if (isset ($_POST ['submit'])){
       
       <div class="mb-3">
 
-        <label >Rolle</label> <br>
+        <label >Rolle (Wählen Sie nur eine Rolle aus)</label> <br>
         <input type="checkbox"  id="admin" value="admin"
         name="Rolle" >
         <label for="admin"> Administrator/in </label><br>
