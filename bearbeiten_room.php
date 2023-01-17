@@ -39,7 +39,7 @@
 									<a>Raum bearbeiten</a>
 								</h4>
 								<div>
-			
+									<h4>Vorhandene Features im Raum:</h4>
 									<ul>
 										<li v-for="(feature, idx) in raum.Features">
 											{{feature.Name}}
